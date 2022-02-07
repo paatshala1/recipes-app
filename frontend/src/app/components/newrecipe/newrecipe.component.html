@@ -1,0 +1,229 @@
+<!-- 
+<div class="container">
+  <div class="table-button-container">
+    <div class="headerName">
+      <span class="sectionHeader">{{title}}</span>
+    </div>
+    <div class="spacer"></div>
+    <button class="acceptButton" mat-raised-button color="primary" type="submit">Agregar</button>
+  </div>
+</div>   -->
+
+<div class="container">
+  <div>
+    <h3>Instrucciones para la creación de una nueva receta</h3>
+    <p>Esta guía le llevará paso a paso a través del proceso de creación de una nueva receta. Complete cada paso con la información solicitada y de click en "Siguiente" para avanzar, de igual forma puede hacer click en "Anterior" para regresar al paso anterior.</p>
+    <p>Algunos aspectos son mandatorios, por lo que no se le permitirá avanzar hasta completarlos.</p>
+  </div>
+
+  <mat-stepper orientation="vertical" linear #stepper>
+
+    <mat-step [stepControl]="LevelsForm">
+      <form [formGroup]="LevelsForm">
+        <ng-template matStepLabel>Seleccione nivel de complejidad</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Nivel</mat-label>
+            <mat-select name="" id="" formControlName='level' required>
+              <mat-option value="{{level._id}}" *ngFor="let level of levelList">{{level.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <div>
+          <button class="transitionButton" mat-raised-button color="primary" disabled={{LevelsForm.invalid}} mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    
+    <mat-step [stepControl]="CategoriesForm">
+      <form [formGroup]="CategoriesForm">
+        <ng-template matStepLabel>Seleccione una categoría</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Categoría</mat-label>
+            <mat-select name="" id="" formControlName='category' required>
+              <mat-option value="{{cat._id}}" *ngFor="let cat of catList">{{cat.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button class="transitionButton" mat-raised-button color="primary" disabled={{CategoriesForm.invalid}} mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="NameForm">
+      <form [formGroup]="NameForm">
+        <ng-template matStepLabel>Ingrese el nombre de la receta</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre de la receta</mat-label>
+            <input matInput type="text" name="" id="" formControlName='name' required autocomplete="off">
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button class="transitionButton" mat-raised-button color="primary" disabled={{NameForm.invalid}} mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="DescriptionForm">
+      <form [formGroup]="DescriptionForm">
+        <ng-template matStepLabel>Ingrese una reseña de la receta</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Reseña de la receta</mat-label>
+            <input matInput type="text" name="" id="" formControlName='description' autocomplete="off">
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button class="transitionButton" mat-raised-button color="primary" disabled={{DescriptionForm.invalid}} mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    
+    <mat-step [stepControl]="ElementsForm" errorMessage="Cada ingrediente debe contener nombre, cantidad y medida">
+      <form [formGroup]="ElementsForm">
+        <div class="flex">
+          <ng-template matStepLabel>Seleccione/agregue los ingredientes</ng-template>
+          <ng-container formArrayName="elements">
+            <ul>
+              <li *ngFor="let _ of this.elements.controls; index as i">
+                <div [formGroupName]="i">
+                  <mat-form-field class="inputForm" appearance="fill">
+                    <!-- <mat-label>Ingrediente</mat-label> -->
+                    <mat-select name="" id="" formControlName="ingredient" required placeholder="--Seleccione ingrediente--">
+                      <mat-option value="{{ingredient._id}}" *ngFor="let ingredient of ingList ">{{ingredient.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field id="matQuantity" class="inputForm" appearance="fill">
+                    <!-- <mat-label>Cantidad</mat-label> -->
+                    <input id="quantity" matInput type="text" name="" id="" formControlName="quantity" required placeholder="Cantidad" autocomplete="off">
+                  </mat-form-field>
+                  <mat-form-field class="inputForm" appearance="fill">
+                    <!-- <mat-label>Unidad de medida</mat-label> -->
+                    <mat-select name="" id="" formControlName="measure" required placeholder="--Selec. unidad medida">
+                      <mat-option value="{{measure._id}}" *ngFor="let measure of measureList">{{measure.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </li>
+            </ul>
+          </ng-container>
+          <div class="addButtonContainer">
+            <button class="transitionButton" mat-mini-fab color="accent" (click)="addElement()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <!-- <button class="acceptButton" mat-raised-button color="primary" type="submit">Agregar todos</button> -->
+        <div class="moveButtons">
+          <button mat-button matStepperPrevious>Atrás</button>
+          <button class="transitionButton" mat-raised-button color="primary" disabled={{ElementsForm.invalid}} matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    
+    <mat-step [stepControl]="InstructionsForm">
+      <form [formGroup]="InstructionsForm">
+        <ng-template matStepLabel>Ingrese los pasos de preparación</ng-template>
+        <div class="flex">
+          <ng-container formArrayName="instructions">
+            <ul >
+              <li *ngFor="let _ of instructions.controls; index as i">
+                <mat-form-field appearance="fill">
+                  <input matInput type="text" name="" id="" [formControlName]="i" required placeholder="Paso de preparación" autocomplete="off" (keyup)="updateInstructionsStatus($event)">
+                </mat-form-field>
+              </li>
+            </ul>
+          </ng-container>
+          <div class="addButtonContainer">
+            <button class="transitionButton" mat-mini-fab color="accent" (click)="addInstruction()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button class="transitionButton" mat-raised-button color="primary" [disabled]=this.disable mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="EquipmentsForm">
+      <form [formGroup]="EquipmentsForm">
+        <ng-template matStepLabel>Seleccione/agregue los equipos recomendados</ng-template>
+        <div class="flex">
+          <ul formArrayName="equipment">
+            <li *ngFor="let _ of equipment.controls; index as i">
+              <mat-form-field appearance="fill">
+                <mat-select name="" id="" [formControlName]="i" placeholder="--Seleccione equipo--">
+                  <mat-option value="{{equip._id}}" *ngFor="let equip of equipList">{{equip.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </li>
+          </ul>
+          <div class="addButtonContainer">
+            <button class="transitionButton" mat-mini-fab color="accent" (click)="addEquipment()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button class="transitionButton" mat-raised-button color="primary" disabled={{EquipmentsForm.invalid}} mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="TipsForm" optional="true">
+      <form [formGroup]="TipsForm">
+        <ng-template matStepLabel>Ingrese "tips"...si los hay</ng-template>
+        <div class="flex">
+          <ul formArrayName="tips">
+            <li *ngFor="let _ of tips.controls; index as i">
+              <mat-form-field appearance="fill">
+  <!--               <mat-label>Tips importantes</mat-label> -->
+                <input matInput type="text" name="" id="" [formControlName]="i" placeholder="--Detalle el tip--" autocomplete="off">
+              </mat-form-field>
+            </li>
+          </ul>
+          <div class="addButtonContainer">
+            <button class="transitionButton" mat-mini-fab color="accent" (click)="addTip()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button class="transitionButton" mat-raised-button color="primary" mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    
+<!--     <mat-step [stepControl]="PhotoForm" optional="true">
+      <form [formGroup]="PhotoForm">
+        <ng-template matStepLabel>Seleccione una fotografía</ng-template>
+        <input type="file" name="" id="" (change)="onPhotoSelected($event)" #fileUpload hidden required="false">
+        <div>
+          {{recipeImageFileName || "No se ha seleccionado foto"}}
+          <button (click)="fileUpload.click()" mat-mini-fab color="accent">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button class="transitionButton" mat-raised-button color="primary" mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step> -->
+
+    <mat-step>
+      <ng-template matStepLabel>Listo! Has completado los pasos</ng-template>
+      <span>Ya podemos crear y guardar la nueva receta</span>
+      <div>
+        <button mat-button matStepperPrevious>Anterior</button>
+        <button mat-button (click)="stepper.reset()">Reiniciar</button>
+        <br>
+        <button class="transitionButton" mat-raised-button color="primary" mat-button (click)="createNewRecipe()">Finalizar</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
+
+

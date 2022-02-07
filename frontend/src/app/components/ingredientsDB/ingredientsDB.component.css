@@ -1,0 +1,35 @@
+table {
+  width: 100%;
+}
+
+
+.colName {
+  width: 30%;
+}
+
+.colNotes {
+  width: 50%;
+}
+
+.colActions {
+  width: 20%;
+}
+
+
+.mat-icon-edit {
+  color: #888888;
+}
+
+.mat-icon-delete {
+  color: #e00606;
+}
+
+
+.tableAction {
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
+.tooltip-red {
+  background: #b71c1c;
+}

@@ -1,0 +1,25 @@
+  <body>
+  
+  <form [formGroup]=contactForm class="contactForm" (ngSubmit)="enviar()">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName='nombre'>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>* requerido</mat-hint>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Asunto</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName='asunto'>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Comentario</mat-label>
+      <textarea matInput autocomplete="off" formControlName='comentario'></textarea>
+      <mat-hint>* requerido</mat-hint>
+    </mat-form-field>
+    <br>
+    <button type="submit" class="btnContact" mat-raised-button color="primary" [disabled]="contactForm.invalid">Enviar</button>
+  </form>
+  
+</body>

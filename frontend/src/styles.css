@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.acceptButton {
+  width: 8rem;
+  height: 3rem;
+}
+
+
+
+.transitionButton {
+  width: 5rem;
+  height: 1.6rem;
+}
+
+.container {
+  width: 90%;
+  margin: 1rem auto;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.mat-row:hover .mat-cell{
+  border-color: #3f51b5;
+}
+
+.table-filter-input {
+  margin: 1rem auto;
+  font-size: 14px;
+  width: 100%;
+}
+
+.sectionHeader {
+  font-size: 40px;
+}
+
+.table-button-container {
+  border: thin solid  #3f51b5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center ;
+  margin: 1rem auto;
+  padding: 1rem;
+}

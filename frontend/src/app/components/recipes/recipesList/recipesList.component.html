@@ -1,0 +1,16 @@
+<div *ngIf="recipes">
+
+  <div class="container">
+    <div class="table-button-container">
+      <div class="spacer"></div>
+      <div class="headerName">
+        <span class="sectionHeader">{{title}}</span>
+      </div>
+      <div class="spacer"></div>
+    </div>
+  </div> 
+
+  <app-recipe *ngFor="let currentRecipe of recipes" [recipe]="currentRecipe"></app-recipe>
+</div>
+
+

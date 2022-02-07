@@ -1,0 +1,2 @@
+1. Componente separado (hijo) para la lista de los ingredientes
+2. Crear objeto para los ingredientes, para luego poder agregar el objeto a la lista

@@ -1,0 +1,60 @@
+###
+GET http://localhost:4000/api/recipe/list/
+
+###
+DELETE  http://localhost:4000/api/category/delete/61f4745eb98631ec3caa580b
+
+
+###
+POST http://localhost:4000/api/level/create HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Medio"
+}
+
+###
+POST http://localhost:4000/api/ingredient/delete/61e27045ceeda41bc0d1c3d7
+
+###
+GET http://localhost:4000/api/ingredient/find/61df670123bc119e84487ab3
+
+###
+PUT http://localhost:4000/api/category/update/61f4762e39f32302496a189c HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Pescado y mariscos",
+  "imageURL": "/assets/img/seaFood.jpg",
+  "route": "pescado_mariscos"
+}
+
+###
+POST http://localhost:4000/api/recipe/create HTTP/1.1
+content-type: application/json
+
+{
+  "category": "61f47a69fdbac9b6ce8042af",
+  "name": "Pechuga dehuesada rellena",
+  "description": ["Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum inventore quibusdam excepturi necessitatibus, ipsam accusamus! Aperiam nihil, distinctio deleniti delectus eligendi, voluptate illum iure assumenda voluptatem quas a dolores aut!", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum inventore quibusdam excepturi necessitatibus, ipsam accusamus! Aperiam nihil, distinctio deleniti delectus eligendi, voluptate illum iure assumenda voluptatem quas a dolores aut!"],
+  "elements": [{"ingredient": "61ea2c9c950f8932660a9d30", "quantity": 2, "measure": "61f1427eb3562c3aff3a798f"}, {"ingredient": "61df713480099a36a4eb54b2", "quantity": 2, "measure": "61ef568b4020c2f896a2cf5d"}, {"ingredient": "61df718380099a36a4eb54be", "quantity": 2, "measure": "61f13e6e398ce3396e111a53"}, {"ingredient": "61df718380099a36a4eb54be", "quantity": 3, "measure": "61f13e6e398ce3396e111a53"}, {"ingredient": "61f84b935be5d86cc463d9f8", "quantity": 1, "measure": "61f13e6e398ce3396e111a53"}, {"ingredient": "61f84b825be5d86cc463d9f0", "quantity": 6, "measure": "61f13e6e398ce3396e111a53"}, {"ingredient": "61f84b9f5be5d86cc463d9fc", "quantity": 1, "measure": "61f13e6e398ce3396e111a53"}, {"ingredient": "61ea2c9c950f8932660a9d30", "quantity": 2, "measure": "61f1427eb3562c3aff3a798f"}, {"ingredient": "61df713480099a36a4eb54b2", "quantity": 2, "measure": "61ef568b4020c2f896a2cf5d"}, {"ingredient": "61df718380099a36a4eb54be", "quantity": 2, "measure": "61f13e6e398ce3396e111a53"}, {"ingredient": "61df718380099a36a4eb54be", "quantity": 3, "measure": "61f13e6e398ce3396e111a53"}, {"ingredient": "61f84b935be5d86cc463d9f8", "quantity": 1, "measure": "61f13e6e398ce3396e111a53"}, {"ingredient": "61f84b825be5d86cc463d9f0", "quantity": 6, "measure": "61f13e6e398ce3396e111a53"}, {"ingredient": "61f84b9f5be5d86cc463d9fc", "quantity": 1, "measure": "61f13e6e398ce3396e111a53"}],
+  "instructions": ["Lorem ipsum dolor sit amet consectetur, adipisicing elit", "Cum inventore quibusdam excepturi necessitatibus, ipsam accusamus!", "Aperiam nihil, distinctio deleniti delectus eligendi, voluptate illum iure assumenda voluptatem quas a dolores aut!"],
+  "equipment": ["61ef5cb33e4bb32785537b70", "61ef5cc43e4bb32785537b73"],
+  "tips": ["siga las instrucciones", "rectifique la sal al final, es mejor que falte un poco", "utilice palillos de dientes para mantener cerradas las pechugas"],
+  "urlPhoto": "/assets/img/pechugaRellena.jpg",
+  "level": "61f57b2fab394bd36043096f"
+}
+
+
+###
+POST http://localhost:4000/api/category/create HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Aves",
+  "imageURL": "/assets/img/chicken.jpg",
+  "route": "aves"
+}
+
+###
+elements": [["61df713480099a36a4eb54b2", 2, "61ef568b4020c2f896a2cf5d"], ["61df718380099a36a4eb54be", 2, "61ef568b4020c2f896a2cf5d"]],

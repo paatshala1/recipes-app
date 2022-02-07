@@ -1,0 +1,14 @@
+h1 {
+  font-size: 4rem;
+  text-align: center;
+}
+
+p {
+  font-size: 1.4rem;
+  line-height: 1.7rem;
+}
+
+.container {
+  margin-top: 20vh;
+  max-height: 100%;
+}

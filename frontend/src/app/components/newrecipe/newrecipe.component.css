@@ -1,0 +1,81 @@
+
+
+mat-form-field {
+  margin-top: 0;
+}
+
+h3 {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+p {
+  font-size: 1rem;
+  text-align: justify;
+}
+
+
+table {
+  width: 100%;
+}
+
+
+.addButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-end;
+  padding-bottom: 2rem;
+  width: 120px;
+}
+
+.dbIngredients .selectedIngredients {
+  margin: 1rem;
+  padding: 1rem ;
+  border: thin solid  #3f51b5;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+.inputForm {
+  margin-right: 1rem;
+}
+
+
+.flex {
+  display: flex;
+}
+
+.grid2cols {
+  margin: 1rem auto;
+  display: grid;
+  grid-template-columns:repeat(2, 45%);
+  justify-content: space-between;
+}
+
+
+.headerName {
+  margin: 1.4rem 0;
+}
+
+
+.hidden {
+  visibility: hidden;
+}
+
+
+.moveButtons {
+  margin-top: 3rem;
+}
+
+
+#matQuantity {
+  width: 4rem;
+}
+
+
+.selectRow {
+  font-size: 1.3rem;
+}
+

@@ -1,0 +1,20 @@
+<div>
+  <form class="newIngredient" [formGroup]=IngredientForm (ngSubmit)="addOrEditIngredient(IngredientForm, formDirective)" #formDirective="ngForm">
+
+    <!-- addOrEditIngredient(IngredientForm, formDirective) -->
+    <mat-form-field>
+      <mat-label>Ingrediente (nombre)</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="name" value="{{editMode[0].name}}" #ingInput>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Notas</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="notes" value="{{editMode[0].notes}}">
+    </mat-form-field>
+    
+    <button *ngIf="!this.editMode[1]" class="acceptButton" mat-raised-button color="primary" type="submit" [disabled]="IngredientForm.invalid">Agregar</button>
+
+    <button *ngIf="this.editMode[1]" class="acceptButton" mat-raised-button color="primary" type="submit">Actualizar</button>
+  
+  </form>
+</div>

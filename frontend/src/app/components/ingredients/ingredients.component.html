@@ -1,0 +1,17 @@
+<h2>Lista de ingredientes</h2>
+
+<div>
+  <ul>
+    <li id="myList" class="ings" *ngFor="let ing of myIngList; let i=index">
+      <input class="selection" type="checkbox" name="" id="" #changingCart (click)="myCart(changingCart.checked)">
+      <p class="ing">{{ing[0]}}</p>
+      <p class="qty">{{ing[1]}}</p>
+      <p class="measure">{{ing[2]}}</p>
+    </li>
+  </ul>
+</div>
+
+
+
+<!-- <p>Fin de ingredientes</p> -->
+

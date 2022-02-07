@@ -1,0 +1,3 @@
+mongodb+srv://Recetario:8MumVySanZon@cluster0.hdhaw.mongodb.net/Cooking?retryWrites=true&w=majority
+
+

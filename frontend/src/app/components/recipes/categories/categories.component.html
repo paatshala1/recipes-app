@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="table-button-container">
+    <div class="spacer"></div>
+    <div class="headerName">
+      <span class="sectionHeader">{{actionTitle}}</span>
+    </div>
+    <button class="acceptButton" mat-raised-button color="accent" routerLink="nueva">Iniciar creación</button>
+    <div class="spacer"></div>
+  </div>
+</div> 
+
+<div class="container">
+  <mat-grid-list cols="4" rowHeight="4:3" gutterSize="1rem">
+    <mat-grid-tile routerLink="{{category.route}}" [queryParams]="{category:category._id}"
+        *ngFor="let category of categories"
+        [colspan]= 1
+        [rowspan]= 1>
+      <img src="{{category.imageURL}}" alt="">
+      <mat-grid-tile-footer>{{category.name}}</mat-grid-tile-footer>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

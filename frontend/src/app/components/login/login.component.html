@@ -1,0 +1,14 @@
+  <form [formGroup]='loginForm' class="loginForm" (ngSubmit)="ingresar()">
+    <div>
+      <img src="../../assets/img/login.png" alt="usuario imagen">
+    </div>
+    <mat-form-field class="loginField" appearance="fill">
+      <mat-label>Usuario</mat-label>
+      <input matInput type="text" autocomplete="off" formControlName='user'>
+    </mat-form-field>
+    <mat-form-field class="loginField" appearance="fill">
+      <mat-label>password</mat-label>
+      <input matInput type="password" autocomplete="off" formControlName='password'>
+    </mat-form-field>
+    <button type="submit" class="loginButton" mat-raised-button color="primary" [disabled]="loginForm.invalid">Ingresar</button>
+  </form>

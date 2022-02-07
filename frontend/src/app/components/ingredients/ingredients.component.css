@@ -1,0 +1,27 @@
+
+.ing {
+  flex-grow: 1;
+  align-self: center;
+  align-content: center;
+}
+
+.ings {
+  display: flex;
+  align-items: center;
+  width:40%;
+  border: 1px solid blue;
+}
+
+.measure {
+  width: 30%;
+}
+
+.qty {
+  width: 10%;
+} 
+
+.selection {
+  /* align-self: center; */
+  margin: 1rem;
+}
+

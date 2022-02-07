@@ -1,0 +1,22 @@
+input {
+  height: 2.2rem;
+  font-size: 1.82rem;
+}
+
+mat-form-field, button {
+  margin: 1rem;
+}
+
+.newIngredient {
+  display: flex;
+  align-items: center;
+}
+
+
+.ng-invalid.ng-untouched:not(form):not(div):not(mat-form-field) {
+  border-left: 5px solid #42A948; /* green */
+}
+  
+.ng-invalid.ng-touched:not(form):not(div)  {
+  border-left: 5px solid #a94442; /* red */
+}

@@ -1,0 +1,99 @@
+
+ul {
+  list-style: none;
+}
+
+
+.equipmentItem {
+  margin-right: 1rem;
+}
+
+
+.equipmentList {
+  display: flex;
+  list-style: none;
+}
+
+
+.ingredientItem {
+  display: flex;
+  gap: 0.7%;
+}
+
+
+.listElement {
+  margin-bottom: 1rem;
+}
+
+
+.recipeGrid {
+  display: grid;
+  grid-template-columns: 30% 30% 38%;
+}
+
+
+.recipeImage {
+  max-width: 300px;
+  max-height: 300px;
+  grid-row: span 4;
+  overflow: hidden;
+  justify-self: flex-end;
+  align-self: center;
+  object-fit: contain;
+}
+
+
+.recipeIngredients {
+  grid-column: span 2;
+  min-height: 300px;
+}
+
+
+.recipeInstructions, .recipeTips {
+  grid-column: span 3;
+}
+
+
+.recipeLevel {
+  margin-top: 1rem;
+  grid-column: span 1;
+}
+
+
+.recipeEquipment {
+  margin-top: 1rem;
+  grid-column: span 2;
+}
+
+
+.recipeSubtitle1, .recipeSubtitle2, .recipeSubtitle3 {
+  margin-top: 2rem;
+  padding-left: 1rem;
+}
+
+.recipeSubtitle1 {
+  background-color: rgba(63, 81, 181, 0.4);
+  grid-column: span 1;  
+}
+
+
+.recipeSubtitle2 {
+  background-color: rgba(63, 81, 181, 0.4);
+  grid-column: span 2;
+}
+
+
+.recipeSubtitle3 {
+  background-color: rgba(63, 81, 181, 0.4);
+  grid-column: span 3;
+}
+
+
+.recipeTitle {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+/*   margin:  auto; */
+  text-align: center;
+  font-size: 3rem;
+}
+
