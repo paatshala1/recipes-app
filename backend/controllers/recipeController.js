@@ -97,9 +97,17 @@ exports.create_recipe = [
   }
 ]
 
+
 exports.update_recipe = function (req, res) {
   
 }
+
+
+exports.upload_image = function (req, res) {
+
+  
+}
+
 
 exports.delete_recipe = function (req, res) {
   Recipe.findByIdAndDelete(req.params.id, err => {
