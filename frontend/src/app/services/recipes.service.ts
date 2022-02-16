@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../models/recipe.model';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,9 @@ export class RecipesService {
 
   getRecipeList(category:string) {
     return this.http.get<any[]>(`${this.URL_API}/list/${category}`);
+  }
+
+  uploadImage(form:FormData) {
+    return this.http.post(`${this.URL_API}/detail/:id/upload`, form);
   }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
 import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar'; //Para el navbar
 import { MatButtonModule } from '@angular/material/button'; //Para el navbar
@@ -18,6 +19,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -46,7 +48,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
     MatPaginatorModule,
     MatGridListModule,
-    MatStepperModule
+    MatStepperModule,
+    MatMenuModule
   ],
   exports: [
     MatSliderModule,
@@ -67,7 +70,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
     MatPaginatorModule,
     MatGridListModule,
-    MatStepperModule
+    MatStepperModule,
+    MatMenuModule
   ]
 })
 

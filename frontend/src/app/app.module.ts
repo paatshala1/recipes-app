@@ -32,6 +32,9 @@ import { MeasuresService } from './services/measures.service';
 import { LevelsService } from './services/levels.service';
 import { EquipmentsService } from './services/equipments.service';
 import { RecipesService } from './services/recipes.service';
+import { ImageUploadComponent } from './components/image-upload/image-upload.component';
+
+import { SetFocusDirective } from './directives/set-focus.directive';
 
 
 
@@ -54,7 +57,9 @@ import { RecipesService } from './services/recipes.service';
     NotfoundComponent,
     CreateIngredientComponent,
     CategoriesComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    ImageUploadComponent,
+    SetFocusDirective
   ],
   imports: [
     BrowserModule,

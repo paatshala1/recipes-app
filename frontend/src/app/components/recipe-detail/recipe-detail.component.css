@@ -1,4 +1,5 @@
 
+
 ul {
   list-style: none;
 }
@@ -29,13 +30,15 @@ ul {
 .recipeGrid {
   display: grid;
   grid-template-columns: 30% 30% 38%;
+  grid-template-rows: 44px repeat(8, auto);
 }
 
 
 .recipeImage {
-  max-width: 300px;
-  max-height: 300px;
-  grid-row: span 4;
+  /* width: 100%;
+  height: 100%; */
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
   overflow: hidden;
   justify-self: flex-end;
   align-self: center;
@@ -66,6 +69,13 @@ ul {
 }
 
 
+.recipeSubtitleIng {
+  padding-left: 1rem;
+  background-color: rgba(63, 81, 181, 0.4);
+  grid-column: span 2;
+
+}
+
 .recipeSubtitle1, .recipeSubtitle2, .recipeSubtitle3 {
   margin-top: 2rem;
   padding-left: 1rem;
@@ -95,5 +105,10 @@ ul {
 /*   margin:  auto; */
   text-align: center;
   font-size: 3rem;
+}
+
+.sticky {
+  position: sticky;
+  top: 100px;
 }
 

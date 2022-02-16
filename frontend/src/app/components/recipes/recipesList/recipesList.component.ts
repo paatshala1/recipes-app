@@ -20,18 +20,20 @@ export class RecipesListComponent implements OnInit {
     this.loadRecipeList(this.currentCategory);
   }
 
-  currentCategory:string = this.route.snapshot.queryParams['category'];
+  // currentCategory:string = this.route.snapshot.queryParams['category'];
+  currentCategory:string = this.route.snapshot.params.cat;
 
+  
   title:string = '';
 
-  recipes!:[];
+  recipes:[] =[];
 
   
   loadRecipeList(category:string) {
     
     this.recipesService.getRecipeList(category).subscribe(
       res => {
-          this.recipes = res[0];
+        this.recipes = res[0];
         this.title = `CATEGORÍA: ${res[1]}`;
       },
       err => console.log(err)

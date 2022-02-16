@@ -26,7 +26,8 @@ table {
   display: flex;
   flex-direction: column;
   justify-content:flex-end;
-  padding-bottom: 2rem;
+  padding-left: 2rem;
+  padding-bottom: 2.1rem;
   width: 120px;
 }
 
@@ -79,3 +80,7 @@ table {
   font-size: 1.3rem;
 }
 
+
+.stepLabel {
+  font-size: 1.3rem;
+}

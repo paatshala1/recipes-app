@@ -12,14 +12,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 .transitionButton {
-  width: 5rem;
-  height: 1.6rem;
+  width: 6rem;
+  height: 2rem;
 }
 
 .container {
   width: 90%;
   margin: 1rem auto;
 }
+
+
+.mat-icon-edit {
+  color: #888888;
+}
+
+.mat-icon-delete {
+  color: #e00606;
+}
+
+
+.pointer {
+  cursor: pointer;
+}
+
+.tooltip-red {
+  background: #b71c1c;
+}
+
 
 .mat-row .mat-cell {
   border-bottom: 1px solid transparent;
@@ -39,6 +58,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .sectionHeader {
   font-size: 40px;
 }
+
+
+.sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+}
+
+
+.stickySub {
+  position: sticky;
+  top: 80px;
+  z-index: 100;
+}
+
 
 .table-button-container {
   border: thin solid  #3f51b5;

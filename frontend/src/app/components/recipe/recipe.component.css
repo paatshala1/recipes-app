@@ -3,8 +3,10 @@ mat-card {
   cursor: pointer;
 }
 
+
 .recipe-card {
-  max-width: 450px;
+  min-width: 300px;
+  max-width: 400px;
   max-height: 250px;
   margin-bottom: 10px;
 }

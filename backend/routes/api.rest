@@ -1,5 +1,5 @@
 ###
-GET http://localhost:4000/api/recipe/list/
+GET http://localhost:4000/api/category/list/
 
 ###
 DELETE  http://localhost:4000/api/category/delete/61f4745eb98631ec3caa580b

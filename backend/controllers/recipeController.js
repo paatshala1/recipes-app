@@ -29,9 +29,10 @@ exports.get_recipeDetail = async function (req, res) {
 
 exports.get_recipeList = async function(req, res) {
 
-  let category = await Category.findOne({_id: req.params.category}, 'name');
+  
+  let category = await Category.findOne({_id: req.params.cat}, 'name');
 
-  let recipeList = await Recipe.find({category: req.params.category})
+  let recipeList = await Recipe.find({category: req.params.cat})
     .populate('category')
     .populate({
       path:'equipment',
@@ -105,7 +106,8 @@ exports.update_recipe = function (req, res) {
 
 exports.upload_image = function (req, res) {
 
-  
+  console.log(req.file);
+  res.send({result: 'Image uploaded'});
 }
 
 

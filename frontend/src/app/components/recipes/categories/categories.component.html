@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container sticky">
   <div class="table-button-container">
     <div class="spacer"></div>
     <div class="headerName">
@@ -11,7 +11,7 @@
 
 <div class="container">
   <mat-grid-list cols="4" rowHeight="4:3" gutterSize="1rem">
-    <mat-grid-tile routerLink="{{category.route}}" [queryParams]="{category:category._id}"
+    <mat-grid-tile routerLink="{{category._id}}"
         *ngFor="let category of categories"
         [colspan]= 1
         [rowspan]= 1>

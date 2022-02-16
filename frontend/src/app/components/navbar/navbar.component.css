@@ -13,3 +13,7 @@
 .spacer{
   flex: 1 1 auto;
 }
+
+.mat-menu-item.custom:hover {
+  background-color: #4757b6;
+}

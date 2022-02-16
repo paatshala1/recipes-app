@@ -16,13 +16,6 @@ table {
 }
 
 
-.mat-icon-edit {
-  color: #888888;
-}
-
-.mat-icon-delete {
-  color: #e00606;
-}
 
 
 .tableAction {
@@ -30,6 +23,3 @@ table {
   cursor: pointer;
 }
 
-.tooltip-red {
-  background: #b71c1c;
-}

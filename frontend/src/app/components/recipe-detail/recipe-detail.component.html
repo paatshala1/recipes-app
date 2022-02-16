@@ -1,15 +1,19 @@
-<div >
+<div class="sticky">
   <h2 class=recipeTitle>{{title}}</h2>
 </div>
 
 <div class="container" *ngIf="recipeDetail">
   <article class="recipeGrid">
-    <section class="recipeSubtitle2">
-      <h2>INGREDIENTES</h2>
+    
+    <section class="recipeSubtitleIng">
+      <h3>INGREDIENTES</h3>
     </section>
+    
     <section class=recipeImage>
-      <img src="{{recipeDetail.urlPhoto}}" alt="{{recipeDetail.name}}">
+      <app-image-upload [recipeID]="recipeID"></app-image-upload>
+      <!-- <img src="{{recipeDetail.urlPhoto}}" alt="{{recipeDetail.name}}"> -->
     </section>
+    
     <section class="recipeIngredients">
       <ul>
         <li class="ingredientItem listElement" *ngFor="let ing of recipeDetail.elements">
@@ -21,7 +25,7 @@
     </section>
 
     <section class="recipeSubtitle3">
-      <h2>INSTRUCCIONES</h2>
+      <h3>INSTRUCCIONES</h3>
     </section>
     <section class="recipeInstructions">
       <ul>
@@ -32,7 +36,7 @@
     </section>
 
     <section class="recipeSubtitle3">
-      <h2>TIPS</h2>
+      <h3>TIPS</h3>
     </section>
     <section class="recipeTips">
       <ul>
@@ -43,10 +47,10 @@
     </section>
 
     <section class="recipeSubtitle1">
-      <h2>NIVEL</h2>
+      <h3>NIVEL</h3>
     </section>
     <section class="recipeSubtitle2">
-      <h2>EQUIPO</h2>
+      <h3>EQUIPO</h3>
     </section>
 
     <section class="recipeLevel">

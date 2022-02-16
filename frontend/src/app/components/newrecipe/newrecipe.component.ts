@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Category } from 'src/app/models/category.model';
 import { Equipment } from 'src/app/models/equipment.model';
 import { Ingredient } from '../../models/ingredient.model';
@@ -20,6 +20,7 @@ import { LevelsService } from '../../services/levels.service';
 import { RecipesService } from 'src/app/services/recipes.service';
 
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatStepper } from '@angular/material/stepper';
 
 
 
@@ -47,19 +48,24 @@ export class NewrecipeComponent implements OnInit, AfterViewInit {
     private equipmentService:EquipmentsService,
     private categoryService:CategoriesService,
     private recipeService:RecipesService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private elementRef:ElementRef
   ) { }
 
 
-  ngAfterViewInit(): void { }
+/*     @ViewChildren('tip') tipsList!:QueryList<ElementRef>; */
+
+    ngAfterViewInit(): void { }
   
-  ngOnInit(): void {  
+    ngOnInit(): void {  
 
     this.loadIngredientsDB();
     this.loadMeasures();
     this.loadEquipments();
     this.loadCategories();
     this.loadLevels();
+
+    // this.LevelsForm.get('category')
 
   }
 
@@ -83,7 +89,7 @@ export class NewrecipeComponent implements OnInit, AfterViewInit {
 
   EquipmentsForm:FormGroup = this.fb.group(
     {
-      equipment: this.fb.array([new FormControl('')], Validators.required)
+      equipment: this.fb.array([new FormControl(null)])
     }
   );
 
@@ -102,14 +108,8 @@ export class NewrecipeComponent implements OnInit, AfterViewInit {
   )
 
 
-  PhotoForm:FormGroup = this.fb.group(
-    {
-      photo: new FormControl('', Validators.required)
-    }
-  )
-
   TipsForm:FormGroup = this.fb.group({
-    tips: this.fb.array([new FormControl('')])
+    tips: this.fb.array([new FormControl(null)])
   })
 
 
@@ -136,17 +136,12 @@ export class NewrecipeComponent implements OnInit, AfterViewInit {
   tips = this.TipsForm.get('tips') as FormArray;
   
 
-  pageSizeOptions:number[] = [5, 10, 25, 50, 100]
-  displayedColumns: string[] = ['name'];  
-
   title = 'Crear receta';
   loading : Boolean = false;
   catList:Category[] = [];
   cleanMeasure:Measure = new Measure('', '');
   elementsSelected:ElementSelected[] = [];
   equipList:Equipment[] = [];
-  recipeImageFile!:File;
-  recipeImageFileName:string = '';
   ingList:Ingredient[]=[];
   levelList:Level[] = [];
   measureList!:Measure[];
@@ -159,7 +154,7 @@ export class NewrecipeComponent implements OnInit, AfterViewInit {
   ING_DATA!:MatTableDataSource<any>;
 
   // DECORATORS
-  @ViewChild('matPaginator') paginator!: MatPaginator;
+  @ViewChild('stepper') stepper!: MatStepper;
 
 // ENVÍA LA LISTA DE INGREDIENTES YA MODIFICADA POR EL USUARIO
   addElementList() { }
@@ -220,13 +215,50 @@ export class NewrecipeComponent implements OnInit, AfterViewInit {
 
   addInstruction() {
     this.instructions.push(new FormControl(''));
+    this.disable = true;
   }
 
 
   addTip() {
     this.tips.push(new FormControl(''));
+/*     console.log(this.tipsList.last.nativeElement); 
+    this.tipsList.last().nativeElement.focus(); */
+  } 
+
+
+  deleteElement(i:number) {
+    // console.log(this.elements.at(i));
+    this.elements.removeAt(i);
   }
 
+
+  deleteEquipment(i:number) {
+    console.log(this.equipment.at(i));
+    this.equipment.removeAt(i);
+  }
+
+
+  deleteInstruction(i:number) {
+    this.instructions.removeAt(i);
+    this.disable = false;
+    for (let i  = 0; i < this.instructions.length; i++) {
+      const inst = this.instructions.at(i).value;
+      if (inst == "") {
+        this.disable = true;
+        break
+      }
+    }
+  }
+
+
+  deleteTip(i:number) {
+    this.tips.removeAt(i);
+  }
+
+
+  goNextStep() {
+    this.stepper.next();
+  }
 
   loadCategories() {
     this.categoryService.getCategoryList().subscribe(
@@ -276,14 +308,6 @@ export class NewrecipeComponent implements OnInit, AfterViewInit {
     );
   }
 
-
-  onPhotoSelected(event:any):void {
-    if(event.target.files && event.target.files[0]) {
-      this.recipeImageFile = <File>event.target.files[0];
-      this.recipeImageFileName = this.recipeImageFile.name;
-    }
-    console.log(this.recipeImageFile);
-  }
 
 
   updateInstructionsStatus(event:any) {

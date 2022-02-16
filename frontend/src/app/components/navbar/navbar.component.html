@@ -1,13 +1,22 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="sticky" color="primary">
   <span class="link" routerLink="">@PetiteHibou</span>
   <div class="spacer"></div>
   <ng-template [ngIf]="loginStatus" [ngIfThen]="thenBlock" [ngIfElse]="elseBlock"></ng-template>
     <ng-template #thenBlock>
       <button mat-flat-button color='primary' routerLink="">Inicio</button>
       <button mat-flat-button color='primary' (click)="getCategoryList()">Recetas</button>
-      <button mat-flat-button color='primary' routerLink="ingredientes">Ingredientes</button>
+      <!-- <button mat-flat-button color='primary' routerLink="ingredientes">Ingredientes</button> -->
       <button mat-flat-button color='primary' routerLink="carrito">Carrito</button>
       <button mat-flat-button color='primary' routerLink="contacto">Contacto</button>
+      <button mat-flat-button color='primary' [mat-menu-trigger-for]="configurationMenu">Configuración</button>
+      <mat-menu #configurationMenu="matMenu" yPosition="below">
+        <button class="custom" mat-menu-item>Categorías</button>
+        <button class="custom" mat-menu-item routerLink="ingredientes">Ingredientes</button>
+        <button class="custom" mat-menu-item routerLink="medidas">Medidas</button>
+        <button class="custom" mat-menu-item routerLink="niveles">Niveles</button>
+        <button class="custom" mat-menu-item routerLink="equipos">Equipos</button>
+      </mat-menu>
+  <div class="spacer"></div>
       <button mat-raised-button color='primary' (click)="salir()">Salir</button>
     </ng-template>
     <ng-template #elseBlock>
