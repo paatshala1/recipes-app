@@ -1,7 +1,17 @@
 
 const Recipe = require('../models/recipe.model');
 const Category = require('../models/category.model');
-const { body, validationResult } = require('express-validator') 
+const { body, validationResult } = require('express-validator');
+
+require('dotenv').config();
+const cloudinary = require('cloudinary').v2;
+
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 
 exports.get_recipeDetail = async function (req, res) {
@@ -104,9 +114,11 @@ exports.update_recipe = function (req, res) {
 }
 
 
-exports.upload_image = function (req, res) {
+exports.upload_image = async function (req, res) {
 
   console.log(req.file);
+  const uploadResult = await cloudinary.uploader.upload(req.file.path);
+  console.log(uploadResult);
   res.send({result: 'Image uploaded'});
 }
 

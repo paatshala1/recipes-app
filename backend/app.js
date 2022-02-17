@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
-const multer = require('multer');
+// const multer = require('multer');
 // const upload = multer({dest: 'public/uploads/'});
 const upload = require('./libs/multer');
 

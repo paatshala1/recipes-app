@@ -1,0 +1,5 @@
+agregar al modelo de recipe el campo public_id (debe ser opcional)
+
+tomar el url y el public_id y pasárselo a al modelo de recipe para hacer un update del registro y guardarle los datos de arriba
+
+borrar la foto que teníamos en el servidor "local" para que solo quede lo que hay en cloudinary
