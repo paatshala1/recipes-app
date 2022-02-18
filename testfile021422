@@ -1,5 +1,13 @@
-agregar al modelo de recipe el campo public_id (debe ser opcional)
 
-tomar el url y el public_id y pasárselo a al modelo de recipe para hacer un update del registro y guardarle los datos de arriba
 
-borrar la foto que teníamos en el servidor "local" para que solo quede lo que hay en cloudinary
+borrar la foto que teníamos en el servidor "local" para que solo quede lo que hay en cloudinary 
+
+corregir carga de recipeList porque el aviso de no hay recetas sale siempre
+
+agregar reseña al detalle de la receta
+
+background al title de la receta para que se vea bien el sticky
+
+probar remover el action del imageUpload component
+
+

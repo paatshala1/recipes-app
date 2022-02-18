@@ -117,9 +117,12 @@ exports.update_recipe = function (req, res) {
 exports.upload_image = async function (req, res) {
 
   console.log(req.file);
-  const uploadResult = await cloudinary.uploader.upload(req.file.path);
+  const uploadResult = await cloudinary.uploader.upload(req.file.path, {width: 300, height: 250, crop: "fill"});
   console.log(uploadResult);
-  res.send({result: 'Image uploaded'});
+  console.log(`REC.PARAMS.ID ${req.body.id}`);
+
+  await Recipe.findByIdAndUpdate(req.body.id, {urlPhoto:uploadResult.url, public_id:uploadResult.public_id});
+  res.send({result: 'Photo loaded'});
 }
 
 

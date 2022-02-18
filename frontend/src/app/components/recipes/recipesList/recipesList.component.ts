@@ -14,8 +14,10 @@ import { ActivatedRoute } from '@angular/router';
 export class RecipesListComponent implements OnInit {
 
   // Para inyectar el Router, arriba está su import y en la función abajo se utiliza.
-  constructor(private myRouter:Router, private recipesService:RecipesService, private route:ActivatedRoute) { }
-
+  constructor(private myRouter:Router, private recipesService:RecipesService, private route:ActivatedRoute) {
+    
+  }
+  
   ngOnInit(): void {
     this.loadRecipeList(this.currentCategory);
   }
@@ -26,7 +28,9 @@ export class RecipesListComponent implements OnInit {
   
   title:string = '';
 
-  recipes:[] =[];
+  recipes:[] = [];
+
+  showNothing:boolean = true;
 
   
   loadRecipeList(category:string) {
@@ -35,9 +39,14 @@ export class RecipesListComponent implements OnInit {
       res => {
         this.recipes = res[0];
         this.title = `CATEGORÍA: ${res[1]}`;
+        // if (this.recipes.length == 0) {
+        //   console.log(this.recipes.length == 0);
+        //   this.showNothing = false;
+        // }
       },
       err => console.log(err)
     )
   }
+
 
 }

@@ -19,6 +19,8 @@ export class ImageUploadComponent implements OnInit {
 
   @Input() recipeID!:string;
 
+  @Input() recipeUrlPhoto!:string | undefined;
+
 
   file!:File;
   imageSelected!:ArrayBuffer | string | null;
@@ -47,32 +49,30 @@ export class ImageUploadComponent implements OnInit {
   uploadImage (file:File) {
     
     this._snackbar.open('Iniciando carga de imagen...', '', {
-      duration: 1500,
+      duration: 800,
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
     });
 
     const fd = new FormData();
-    fd.append('recipeImage', file)
+    fd.append('recipeImage', file);
+    fd.append('id', this.recipeID);
 
     this.recipesService.uploadImage(fd).subscribe(
       res => {
         console.log(res);
+        setTimeout(() => {
+          this._snackbar.open('Imagen cargada...', '', {
+            duration: 1000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom'
+          })
+        }, 2000);
       },
       err => console.log(err)
     )
     
-    
-    
-    
 
-    setTimeout(() => {
-      this._snackbar.open('Imagen cargada...', '', {
-        duration: 1500,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom'
-      })
-    }, 2000);
   }
 
 }

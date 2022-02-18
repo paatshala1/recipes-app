@@ -21,6 +21,7 @@ const recipeSchema = new Schema({
     type:Schema.Types.ObjectId, ref:'Equipment', required:false
   }],
   urlPhoto:{type:String, required:false},
+  public_id:{type:String, required:false},
   level:{type:Schema.Types.ObjectId, ref:'Level', required:true}
 },
 {

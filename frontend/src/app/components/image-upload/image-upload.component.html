@@ -1,7 +1,7 @@
 <form class="uploadImageForm" action="/image" method="POST" enctype="multipart/form-data" [formGroup]="UploadImageForm" (submit)="uploadImage(file)">
   <input type="file" formControlName="recipeImage" name="recipeImage" id="" (change)="onImageSelected($event)" #fileUpload hidden required>
   <div class="noImage">
-    <img class="pointer" [src]="imageSelected || './assets/img/noImage.jpg'" alt="No image" (click)="fileUpload.click()">
+    <img class="pointer" [src]="imageSelected || recipeUrlPhoto || './assets/img/noImage.jpg'" alt="Recipe image or not image" (click)="fileUpload.click()">
     <button type="submit" class="acceptButton" mat-raised-button color="primary" disabled={{UploadImageForm.invalid}}>Cargar foto</button>
   </div>
 </form>
