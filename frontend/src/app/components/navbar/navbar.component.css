@@ -1,7 +1,9 @@
 
+
 .link {
   cursor: pointer;
 }
+
 
 .mat-toolbar{
   /* background-color: cornflowerblue; */
@@ -11,6 +13,20 @@
   color: white;
 }
 
+
+.menu-btn {
+  font-size: 1.2rem;
+}
+
+
+.menu-btn:hover {
+  opacity: 0.5;
+}
+
+
+.menu-btn-label {
+  margin-left: 0.4rem;
+}
 
 .navBar {
   height: 80px;  

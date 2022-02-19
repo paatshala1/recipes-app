@@ -3,12 +3,26 @@
   <div class="spacer"></div>
   <ng-template [ngIf]="loginStatus" [ngIfThen]="thenBlock" [ngIfElse]="elseBlock"></ng-template>
     <ng-template #thenBlock>
-      <button mat-flat-button color='primary' routerLink="">Inicio</button>
-      <button mat-flat-button color='primary' (click)="getCategoryList()">Recetas</button>
-      <!-- <button mat-flat-button color='primary' routerLink="ingredientes">Ingredientes</button> -->
-      <button mat-flat-button color='primary' routerLink="carrito">Carrito</button>
-      <button mat-flat-button color='primary' routerLink="contacto">Contacto</button>
-      <button mat-flat-button color='primary' [mat-menu-trigger-for]="configurationMenu">Configuración</button>
+      <button class="menu-btn" mat-flat-button color='primary' routerLink="">
+        <mat-icon>home</mat-icon>
+        <span class="menu-btn-label">INICIO</span>
+      </button>
+      <button class="menu-btn" mat-flat-button color='primary' (click)="getCategoryList()">
+        <mat-icon>style</mat-icon>
+        <span class="menu-btn-label">RECETAS</span>
+      </button>
+      <button class="menu-btn" mat-flat-button color='primary' routerLink="carrito">
+        <mat-icon>shopping_cart</mat-icon>
+        <span class="menu-btn-label">CARRITO</span>
+      </button>
+      <button class="menu-btn" mat-flat-button color='primary' routerLink="contacto">
+        <mat-icon>face</mat-icon>
+        <span class="menu-btn-label">CONTACTO</span>
+      </button>
+      <button class="menu-btn" mat-flat-button color='primary' [mat-menu-trigger-for]="configurationMenu">
+          <mat-icon>settings</mat-icon>
+          <span class="menu-btn-label">CONFIG</span>
+      </button>
       <mat-menu class="custom" #configurationMenu="matMenu" yPosition="below">
         <button class="custom" mat-menu-item>Categorías</button>
         <button class="custom" mat-menu-item routerLink="ingredientes">Ingredientes</button>

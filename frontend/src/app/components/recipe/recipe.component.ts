@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from '../../models/recipe.model';
 import { RecipesService } from 'src/app/services/recipes.service';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +13,7 @@ export class RecipeComponent implements OnInit {
 
   @Input() recipe!:Recipe;
 
-  constructor(private recipesService:RecipesService, private router:Router) { }
+  constructor(private recipesService:RecipesService, private _router:Router) { }
 
   ngOnInit(): void {
   }
@@ -24,12 +24,14 @@ export class RecipeComponent implements OnInit {
     this.recipesService.deleteRecipe(id).subscribe(
       res => {
         console.log(res);
-        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        this._router.routeReuseStrategy.shouldReuseRoute = function () {
           return false;
         };
-        this.router.navigated = false;
-        this.router.navigate([`/recetas/${currCat}`]);
-      },
+        this._router.navigated = false;
+        this._router.navigate([`/recetas/${currCat}`]);
+        this._router.routeReuseStrategy.shouldReuseRoute = function (future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
+          return future.routeConfig === curr.routeConfig;
+      }},
       err => console.log(err)
     )
   }
