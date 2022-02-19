@@ -4,13 +4,17 @@ const Category = require('../models/category.model');
 const { body, validationResult } = require('express-validator');
 
 require('dotenv').config();
+
 const cloudinary = require('cloudinary').v2;
+const fs = require('fs-extra');
+
 
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
+  
 });
 
 
@@ -58,7 +62,7 @@ exports.get_recipeList = async function(req, res) {
     .populate('level')
     .sort({name: 'asc'});
   
-  console.log(category.name);
+  // console.log(category.name);
   res.send([recipeList, category.name]);
 }
 
@@ -117,18 +121,25 @@ exports.update_recipe = function (req, res) {
 exports.upload_image = async function (req, res) {
 
   console.log(req.file);
-  const uploadResult = await cloudinary.uploader.upload(req.file.path, {width: 300, height: 250, crop: "fill"});
-  console.log(uploadResult);
-  console.log(`REC.PARAMS.ID ${req.body.id}`);
+  const uploadResult = await cloudinary.uploader.upload(req.file.path, {width: 300, height: 250, crop: "fill", folder: 'recipe-image'});
 
   await Recipe.findByIdAndUpdate(req.body.id, {urlPhoto:uploadResult.url, public_id:uploadResult.public_id});
+  await fs.unlink(req.file.path);
+
   res.send({result: 'Photo loaded'});
 }
 
 
-exports.delete_recipe = function (req, res) {
-  Recipe.findByIdAndDelete(req.params.id, err => {
-    console.log(err);
-    res.send();
-  })
+exports.delete_recipe = async function (req, res) {
+  const { id } = req.params;
+  // console.log(id);
+  const deletedRecipe = await Recipe.findByIdAndDelete(id,);
+    console.log(`PUBLIC_ID: ${deletedRecipe.public_id}`);
+    
+  if (deletedRecipe.public_id.startsWith('recipe-image/')) {
+    await cloudinary.uploader.destroy(deletedRecipe.public_id)
+  }
+  
+  res.send({result: 'Receta borrada'});
+  
 }

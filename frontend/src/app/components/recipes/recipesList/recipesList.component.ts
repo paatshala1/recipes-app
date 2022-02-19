@@ -30,7 +30,7 @@ export class RecipesListComponent implements OnInit {
 
   recipes:[] = [];
 
-  showNothing:boolean = true;
+  noRecipe:boolean = false;
 
   
   loadRecipeList(category:string) {
@@ -39,10 +39,7 @@ export class RecipesListComponent implements OnInit {
       res => {
         this.recipes = res[0];
         this.title = `CATEGORÍA: ${res[1]}`;
-        // if (this.recipes.length == 0) {
-        //   console.log(this.recipes.length == 0);
-        //   this.showNothing = false;
-        // }
+        if (this.recipes.length == 0) this.noRecipe = true;
       },
       err => console.log(err)
     )

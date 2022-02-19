@@ -1,4 +1,4 @@
-<mat-toolbar class="sticky" color="primary">
+<mat-toolbar class="sticky navBar" color="primary">
   <span class="link" routerLink="">@PetiteHibou</span>
   <div class="spacer"></div>
   <ng-template [ngIf]="loginStatus" [ngIfThen]="thenBlock" [ngIfElse]="elseBlock"></ng-template>
@@ -9,7 +9,7 @@
       <button mat-flat-button color='primary' routerLink="carrito">Carrito</button>
       <button mat-flat-button color='primary' routerLink="contacto">Contacto</button>
       <button mat-flat-button color='primary' [mat-menu-trigger-for]="configurationMenu">Configuración</button>
-      <mat-menu #configurationMenu="matMenu" yPosition="below">
+      <mat-menu class="custom" #configurationMenu="matMenu" yPosition="below">
         <button class="custom" mat-menu-item>Categorías</button>
         <button class="custom" mat-menu-item routerLink="ingredientes">Ingredientes</button>
         <button class="custom" mat-menu-item routerLink="medidas">Medidas</button>

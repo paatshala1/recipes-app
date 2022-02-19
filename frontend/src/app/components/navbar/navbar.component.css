@@ -10,10 +10,20 @@
 .mat-button{
   color: white;
 }
+
+
+.navBar {
+  height: 80px;  
+}
+
+
 .spacer{
   flex: 1 1 auto;
 }
 
-.mat-menu-item.custom:hover {
+.custom {
   background-color: #4757b6;
+  padding-top: 0;
 }
+
+

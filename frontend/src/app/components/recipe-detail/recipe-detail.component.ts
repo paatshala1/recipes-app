@@ -26,6 +26,8 @@ export class RecipeDetailComponent implements OnInit {
 
   recipeID:string = this.route.snapshot.params.id;
 
+  recipeCategory:string = this.route.snapshot.params.cat;
+
   loadRecipeDetail() {
 
     this.recipesService.getRecipeDetail(this.recipeID).subscribe(

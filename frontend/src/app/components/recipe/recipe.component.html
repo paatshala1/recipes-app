@@ -5,8 +5,14 @@
         <mat-card-subtitle *ngFor="let p of recipe.description">
           {{p}}
         </mat-card-subtitle>
-        <img mat-card-md-image src={{recipe.urlPhoto}}>
+        <img mat-card-md-image [src]="recipe.urlPhoto || './assets/img/noImage.jpeg'" alt="Recipe image or not image">
       </mat-card-title-group>
-      <mat-card-content>Nivel: {{recipe.level.name}}</mat-card-content>
+      <mat-card-content>
+        Nivel: {{recipe.level.name}}
+        <div class="spacer"></div>
+        <button class="deleteRecipe" (click)="deleteRecipe(recipe._id)">
+          Eliminar receta
+        </button>
+      </mat-card-content>
     </mat-card>
 

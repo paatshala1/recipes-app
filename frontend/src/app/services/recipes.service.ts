@@ -18,6 +18,11 @@ export class RecipesService {
   }
 
 
+  deleteRecipe(id:string) {
+    return this.http.delete(`${this.URL_API}/delete/${id}`);
+  }
+
+
   getRecipeDetail(id:string) {
     return this.http.get<Recipe>(`${this.URL_API}/detail/${id}`);
   }

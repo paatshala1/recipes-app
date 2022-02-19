@@ -1,12 +1,40 @@
 
 mat-card {
   cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+
+mat-card-title-group {
+  /* flex-grow: 1; */
+  overflow: hidden;
+  max-height: 65%;
+}
+
+
+mat-card-content {
+  height: 20%;
+}
+
+
+.deleteRecipe {
+  background-color: #ff0000;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+}
+
+
+.mat-card-subtitle {
+  min-height: 100px;
+}
 
 .recipe-card {
   min-width: 300px;
   max-width: 400px;
   max-height: 250px;
   margin-bottom: 10px;
+  overflow: hidden;
 }

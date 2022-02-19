@@ -1,8 +1,6 @@
-<!-- <div class="container">
-  <h3>Aún no has ingresado recetas en {{title}}</h3>
-</div> -->
 
-<div *ngIf="recipes.length > 0">
+
+<div *ngIf="recipes">
 
   <div class="container stickySub">
     <div class="table-button-container">
@@ -15,8 +13,9 @@
   </div> 
 
   <div class="container">
+    <h3 *ngIf="noRecipe">Aún no se han ingresado recetas en esta categoría</h3>
     <div class="recipes-flex">
-      <app-recipe *ngFor="let currentRecipe of recipes" [recipe]="currentRecipe"></app-recipe>
+      <app-recipe class="app-recipe" *ngFor="let currentRecipe of recipes" [recipe]="currentRecipe"></app-recipe>
     </div>
   </div>
   

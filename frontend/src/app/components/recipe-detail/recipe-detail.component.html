@@ -1,8 +1,16 @@
-<div class="sticky">
-  <h2 class=recipeTitle>{{title}}</h2>
-</div>
+  <div class="sticky container flex">
+    <a *ngIf="recipeDetail"  routerLink="/recetas/{{recipeCategory}}" mat-fab color="accent" aria-label="Example icon button with a menu icon">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h2 class=recipeTitle>{{title}}</h2>
+  </div>
+  
 
 <div class="container" *ngIf="recipeDetail">
+  <div class="container">
+    <p class="recipeDescription">{{recipeDetail.description}}</p>
+  </div>
+
   <article class="recipeGrid">
     
     <section class="recipeSubtitleIng">

@@ -16,6 +16,14 @@ ul {
 }
 
 
+.flex {
+  display: flex;
+  margin-top: 0;
+  align-items: center;
+  background-color: #131313;
+}
+
+
 .ingredientItem {
   display: flex;
   gap: 0.7%;
@@ -26,6 +34,11 @@ ul {
   margin-bottom: 1rem;
 }
 
+.recipeDescription {
+  padding-bottom: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
 
 .recipeGrid {
   display: grid;
@@ -100,8 +113,11 @@ ul {
 
 
 .recipeTitle {
+  display: inline;
+  width: 100%;
+  text-align: center;
   margin-top: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 /*   margin:  auto; */
   text-align: center;
   font-size: 3rem;
@@ -109,6 +125,6 @@ ul {
 
 .sticky {
   position: sticky;
-  top: 100px;
+  top: 80px;
 }
 
