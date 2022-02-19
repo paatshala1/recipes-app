@@ -136,7 +136,7 @@ exports.delete_recipe = async function (req, res) {
   const deletedRecipe = await Recipe.findByIdAndDelete(id,);
     console.log(`PUBLIC_ID: ${deletedRecipe.public_id}`);
     
-  if (deletedRecipe.public_id.startsWith('recipe-image/')) {
+  if (deletedRecipe.public_id && deletedRecipe.public_id.startsWith('recipe-image/')) {
     await cloudinary.uploader.destroy(deletedRecipe.public_id)
   }
   

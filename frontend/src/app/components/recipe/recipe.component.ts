@@ -16,14 +16,19 @@ export class RecipeComponent implements OnInit {
   constructor(private recipesService:RecipesService, private myRouter:Router) { }
 
   ngOnInit(): void {
-
   }
+  
+  
 
-  deleteRecipe(id:any) {
+  deleteRecipe(id:any, currCat:any) {
     this.recipesService.deleteRecipe(id).subscribe(
       res => {
         console.log(res);
-        this.myRouter.navigateByUrl('/recetas');
+        this.myRouter.routeReuseStrategy.shouldReuseRoute = function () {
+          return false;
+        };
+        this.myRouter.navigated = false;
+        this.myRouter.navigate([`/recetas/${currCat}`]);
       },
       err => console.log(err)
     )

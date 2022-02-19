@@ -10,7 +10,7 @@
       <mat-card-content>
         Nivel: {{recipe.level.name}}
         <div class="spacer"></div>
-        <button class="deleteRecipe" (click)="deleteRecipe(recipe._id)">
+        <button class="deleteRecipe" (click)="deleteRecipe(recipe._id, recipe.category._id)">
           Eliminar receta
         </button>
       </mat-card-content>
