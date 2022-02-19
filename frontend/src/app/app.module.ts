@@ -22,8 +22,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { CreateIngredientComponent } from './components/create-ingredient/create-ingredient.component';
-import { CategoriesComponent } from './components/recipes/categories/categories.component';
+import { CategoriesListComponent } from './components/recipes/categoriesList/categoriesList.component';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+
 
 import { LoggedService } from './services/logged.service';
 import { IngredientsDBService } from './services/ingredientsDB.service';
@@ -35,6 +37,9 @@ import { RecipesService } from './services/recipes.service';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 
 import { SetFocusDirective } from './directives/set-focus.directive';
+import { LevelsComponent } from './components/levels/levels.component';
+import { EquipmentsComponent } from './components/equipments/equipments.component';
+import { MeasuresComponent } from './components/measures/measures.component';
 
 
 
@@ -56,10 +61,14 @@ import { SetFocusDirective } from './directives/set-focus.directive';
     RecipeComponent,
     NotfoundComponent,
     CreateIngredientComponent,
-    CategoriesComponent,
+    CategoriesListComponent,
     RecipeDetailComponent,
     ImageUploadComponent,
-    SetFocusDirective
+    SetFocusDirective,
+    LevelsComponent,
+    EquipmentsComponent,
+    MeasuresComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css']
+  templateUrl: './categoriesList.component.html',
+  styleUrls: ['./categoriesList.component.css']
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesListComponent implements OnInit {
 
   constructor(private categoriesService:CategoriesService, private myRouter:Router) { }
 

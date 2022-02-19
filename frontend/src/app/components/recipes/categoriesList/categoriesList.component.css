@@ -1,0 +1,23 @@
+img {
+  width: 100%;
+}
+
+mat-grid-tile {
+  cursor: pointer;
+}
+
+mat-grid-tile-footer {
+  font-size: 1.5rem;
+}
+
+
+.create-recipe {
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  width: max-content;
+}
+
+.table-button-container {
+  justify-content: space-around;
+}
+

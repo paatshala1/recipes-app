@@ -24,16 +24,14 @@ export class RecipeComponent implements OnInit {
     this.recipesService.deleteRecipe(id).subscribe(
       res => {
         console.log(res);
-        this._router.routeReuseStrategy.shouldReuseRoute = function () {
-          return false;
-        };
-        this._router.navigated = false;
-        this._router.navigate([`/recetas/${currCat}`]);
-        this._router.routeReuseStrategy.shouldReuseRoute = function (future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
-          return future.routeConfig === curr.routeConfig;
-      }},
+        let currentUrl = this._router.url;
+          this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+              this._router.navigate([currentUrl]);
+          });
+      },
       err => console.log(err)
     )
   }
+
 
 }

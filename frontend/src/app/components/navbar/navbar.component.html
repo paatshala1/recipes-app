@@ -24,14 +24,16 @@
           <span class="menu-btn-label">CONFIG</span>
       </button>
       <mat-menu class="custom" #configurationMenu="matMenu" yPosition="below">
-        <button class="custom" mat-menu-item>Categorías</button>
+        <button class="custom" mat-menu-item routerLink="categorias">Categorías</button>
         <button class="custom" mat-menu-item routerLink="ingredientes">Ingredientes</button>
         <button class="custom" mat-menu-item routerLink="medidas">Medidas</button>
         <button class="custom" mat-menu-item routerLink="niveles">Niveles</button>
         <button class="custom" mat-menu-item routerLink="equipos">Equipos</button>
       </mat-menu>
   <div class="spacer"></div>
-      <button mat-raised-button color='primary' (click)="salir()">Salir</button>
+      <button mat-raised-button color='primary' (click)="salir()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
     </ng-template>
     <ng-template #elseBlock>
       <button mat-raised-button color='primary' (click)="goLogin()">Ingresar</button>
