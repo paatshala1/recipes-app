@@ -13,7 +13,7 @@ export class RecipeComponent implements OnInit {
 
   @Input() recipe!:Recipe;
 
-  constructor(private recipesService:RecipesService, private myRouter:Router) { }
+  constructor(private recipesService:RecipesService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -24,11 +24,11 @@ export class RecipeComponent implements OnInit {
     this.recipesService.deleteRecipe(id).subscribe(
       res => {
         console.log(res);
-        this.myRouter.routeReuseStrategy.shouldReuseRoute = function () {
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
           return false;
         };
-        this.myRouter.navigated = false;
-        this.myRouter.navigate([`/recetas/${currCat}`]);
+        this.router.navigated = false;
+        this.router.navigate([`/recetas/${currCat}`]);
       },
       err => console.log(err)
     )
