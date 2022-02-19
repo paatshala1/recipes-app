@@ -3,12 +3,12 @@
 
     <!-- addOrEditIngredient(IngredientForm, formDirective) -->
     <mat-form-field>
-      <mat-label>Ingrediente (nombre)</mat-label>
-      <input type="text" matInput autocomplete="off" formControlName="name" value="{{editMode[0].name}}" #ingInput>
+      <mat-label>&nbsp;&nbsp; Ingrediente&nbsp;</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="name" value="{{editMode[0].name}}" #ingInput required>
     </mat-form-field>
   
     <mat-form-field>
-      <mat-label>Notas</mat-label>
+      <mat-label>Notas (no obligatorio)</mat-label>
       <input type="text" matInput autocomplete="off" formControlName="notes" value="{{editMode[0].notes}}">
     </mat-form-field>
     
