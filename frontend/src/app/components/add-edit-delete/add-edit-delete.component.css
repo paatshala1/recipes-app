@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+}
+
+
+.colName {
+  width: 80%;
+}
+
+
+.colActions {
+  width: 20%;
+}
+
+
+.tableAction {
+  margin-left: 2rem;
+  cursor: pointer;
+}

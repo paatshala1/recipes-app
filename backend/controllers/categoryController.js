@@ -76,11 +76,11 @@ exports.create_category = [
 
 
 exports.delete_category = async function (req, res) {
-  
-  await Category.findByIdAndDelete(req.params.id, );
+
+  await Category.findByIdAndDelete(req.params.id);
   let catList = await Category.find({}).sort({name: 'asc'});
   res.send(catList);
-  
+
 }
 
 

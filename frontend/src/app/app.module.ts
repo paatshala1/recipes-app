@@ -40,6 +40,8 @@ import { SetFocusDirective } from './directives/set-focus.directive';
 import { LevelsComponent } from './components/levels/levels.component';
 import { EquipmentsComponent } from './components/equipments/equipments.component';
 import { MeasuresComponent } from './components/measures/measures.component';
+import { AddEditDeleteComponent } from './components/add-edit-delete/add-edit-delete.component';
+import { AddEditDeleteDetailComponent } from './components/add-edit-delete-detail/add-edit-delete-detail.component';
 
 
 
@@ -68,7 +70,9 @@ import { MeasuresComponent } from './components/measures/measures.component';
     LevelsComponent,
     EquipmentsComponent,
     MeasuresComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    AddEditDeleteComponent,
+    AddEditDeleteDetailComponent
   ],
   imports: [
     BrowserModule,

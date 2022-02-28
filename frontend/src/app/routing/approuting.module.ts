@@ -12,10 +12,8 @@ import { NotfoundComponent } from '../components/notfound/notfound.component';
 import { CreateIngredientComponent } from '../components/create-ingredient/create-ingredient.component';
 import { CategoriesListComponent } from '../components/recipes/categoriesList/categoriesList.component';
 import { RecipeDetailComponent } from '../components/recipe-detail/recipe-detail.component';
-import { MeasuresComponent } from '../components/measures/measures.component';
-import { EquipmentsComponent } from '../components/equipments/equipments.component';
-import { LevelsComponent } from '../components/levels/levels.component';
-import { CategoriesComponent } from '../components/categories/categories.component';
+import { AddEditDeleteComponent } from '../components/add-edit-delete/add-edit-delete.component';
+
 
 const appRoutes:Routes = [
   {path: '', component:HomeComponent},
@@ -26,10 +24,10 @@ const appRoutes:Routes = [
   {path: 'carrito', component:CartComponent},
   {path: 'contacto',  component:ContactComponent},
   {path: 'ingredientes', component:IngredientsDBComponent},
-  {path: 'categorias', component:CategoriesComponent},
-  {path: 'medidas', component:MeasuresComponent},
-  {path: 'equipos', component:EquipmentsComponent},
-  {path: 'niveles', component:LevelsComponent},
+  {path: 'categorias', component:AddEditDeleteComponent},
+  {path: 'medidas', component:AddEditDeleteComponent},
+  {path: 'equipos', component:AddEditDeleteComponent},
+  {path: 'niveles', component:AddEditDeleteComponent},
   {path: 'login',  component:LoginComponent},
   {path: 'ingredientes/crear', component:CreateIngredientComponent},
   {path: '**', component:NotfoundComponent}

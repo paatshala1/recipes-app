@@ -14,12 +14,61 @@ cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
-  
+
 });
 
 
+exports.canDeleteCategory = async function (req, res) {
+
+  let recipesByCategory = await Recipe.find({category: req.params.id});
+
+  if (recipesByCategory.length > 0) {
+    res.send(false);
+  }
+  else {
+    res.send(true);
+  }
+}
+
+
+exports.canDeleteLevel = async function (req, res) {
+  let recipesByLevel = await Recipe.find({level: req.params.id});
+
+  if (recipesByLevel.length > 0) {
+    res.send(false);
+  }
+  else {
+    res.send(true);
+  }
+}
+
+
+exports.canDeleteMeasure = async function (req, res) {
+  let recipesByMeasure = await Recipe.find({measure: req.params.id});
+
+  if (recipesByMeasure.length > 0) {
+    res.send(false);
+  }
+  else {
+    res.send(true);
+  }
+}
+
+
+exports.canDeleteEquipment = async function (req, res) {
+  let recipesByEquipment = await Recipe.find({equipment: req.params.id});
+
+  if (recipesByEquipment.length > 0) {
+    res.send(false);
+  }
+  else {
+    res.send(true);
+  }
+}
+
+
 exports.get_recipeDetail = async function (req, res) {
-  
+
   let recipeDetail = await Recipe.findById(req.params.id)
     .populate('category')
     .populate({
@@ -43,7 +92,7 @@ exports.get_recipeDetail = async function (req, res) {
 
 exports.get_recipeList = async function(req, res) {
 
-  
+
   let category = await Category.findOne({_id: req.params.cat}, 'name');
 
   let recipeList = await Recipe.find({category: req.params.cat})
@@ -61,7 +110,7 @@ exports.get_recipeList = async function(req, res) {
     })
     .populate('level')
     .sort({name: 'asc'});
-  
+
   // console.log(category.name);
   res.send([recipeList, category.name]);
 }
@@ -114,7 +163,7 @@ exports.create_recipe = [
 
 
 exports.update_recipe = function (req, res) {
-  
+
 }
 
 
@@ -135,11 +184,11 @@ exports.delete_recipe = async function (req, res) {
   // console.log(id);
   const deletedRecipe = await Recipe.findByIdAndDelete(id);
     console.log(`PUBLIC_ID: ${deletedRecipe.public_id}`);
-    
+
   if (deletedRecipe.public_id && deletedRecipe.public_id.startsWith('recipe-image/')) {
     await cloudinary.uploader.destroy(deletedRecipe.public_id)
   }
-  
+
   res.send({result: 'Receta borrada'});
-  
+
 }

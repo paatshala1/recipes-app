@@ -11,7 +11,18 @@ export class MeasuresService {
 
   URL_API = 'http://localhost:4000/api/measure';
 
+
+  canDeleteMeasure(id:string) {
+    return this.http.get<boolean>(`http://localhost:4000/api/recipe/measure/${id}`);
+  }
+
+
   getMeasures() {
     return this.http.get<Measure[]>(`${this.URL_API}/list`);
+  }
+
+
+  removeMeasure(id:string) {
+    return this.http.delete<Measure[]>(`${this.URL_API}/delete/${id}`);
   }
 }

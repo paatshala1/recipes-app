@@ -37,7 +37,7 @@ export class CreateIngredientComponent implements OnInit, AfterViewInit {
   } 
   
 
-  addOrEditIngredient(form:FormGroup, formDirective: FormGroupDirective) {
+  addOrEditIngredient(form:FormGroup) {
     // console.log(form.value);
     // console.log(this.editMode[0]);
     if (!this.editMode[1]) {

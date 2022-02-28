@@ -11,7 +11,18 @@ export class LevelsService {
 
   URL_API = 'http://localhost:4000/api/level';
 
+
+  canDeleteLevel(id:string) {
+    return this.http.get<boolean>(`http://localhost:4000/api/recipe/level/${id}`);
+  }
+
+  
   getLevels() {
     return this.http.get<Level[]>(`${this.URL_API}/list`);
+  }
+
+
+  removeLevel(id:string) {
+    return this.http.delete<Level[]>(`${this.URL_API}/delete/${id}`);
   }
 }

@@ -4,17 +4,17 @@ const { body, validationResult } = require('express-validator');
 
 
 exports.get_levelList = async function (req, res) {
-  
-  let levelList = await Level.find({}).sort({name: 'asc'});
+
+  let levelList = await Level.find({}).sort({_id: 'asc'});
   res.send(levelList);
 
 }
 
 exports.create_level = [
-  
+
   body('name').trim()
     .escape(),
-  
+
   (req, res) => {
 
     let errors = validationResult(req);
@@ -44,3 +44,13 @@ exports.create_level = [
     }
   }
 ]
+
+
+exports.delete_level = async function (req, res) {
+
+  await Level.findByIdAndDelete(req.params.id);
+  let levelList = await Level.find({}).sort({_id: 'asc'});
+  res.send(levelList);
+
+
+}
