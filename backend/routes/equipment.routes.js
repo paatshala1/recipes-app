@@ -8,5 +8,7 @@ router.get('/list', equipmentController.get_equipmentList);
 
 router.post('/create', equipmentController.create_equipment);
 
+router.delete('/delete/:id', equipmentController.delete_equipment);
+
 
 module.exports = router;

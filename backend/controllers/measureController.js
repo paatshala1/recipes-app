@@ -3,7 +3,7 @@ const { body, validationResult } = require('express-validator');
 
 
 exports.get_measureList = async function (req, res) {
-  
+
   let measureList = await Measure.find({}).sort({name: 'asc'});
   console.log(measureList);
   res.send(measureList);
@@ -45,3 +45,12 @@ exports.create_measure = [
     }
   }
 ]
+
+
+exports.delete_measure = async function (req, res) {
+
+  await Measure.findByIdAndDelete(req.params.id);
+  let measureList = await Measure.find({}).sort({name: 'asc'});
+  res.send(measureList);
+
+}

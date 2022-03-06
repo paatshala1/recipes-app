@@ -3,11 +3,11 @@ const { body, validationResult } = require('express-validator');
 
 
 exports.get_equipmentList = async function (req, res) {
-  
+
   let equipList = await Equipment.find({}).sort({name: 'asc'});
   console.log(equipList);
   res.send(equipList);
-  
+
 }
 
 
@@ -47,3 +47,12 @@ exports.create_equipment = [
   }
 
 ]
+
+
+exports.delete_equipment = async function (req, res) {
+
+  await Equipment.findByIdAndDelete(req.params.id);
+  let equipList = await Equipment.find({}).sort({name: 'asc'});
+  res.send(equipList);
+
+}

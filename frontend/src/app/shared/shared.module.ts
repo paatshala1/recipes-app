@@ -41,7 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatCardModule,  
+    MatCardModule,
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
@@ -52,6 +52,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatMenuModule
   ],
   exports: [
+    CommonModule,
     MatSliderModule,
     MatToolbarModule,
     MatButtonModule,

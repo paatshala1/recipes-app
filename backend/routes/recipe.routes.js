@@ -11,7 +11,11 @@ router.get('/category/:id', recipeController.canDeleteCategory);
 
 router.get('/level/:id', recipeController.canDeleteLevel);
 
+router.get('/measure/:id', recipeController.canDeleteMeasure);
 
+router.get('/equipment/:id', recipeController.canDeleteEquipment);
+
+router.get('/ingredient/:id', recipeController.canDeleteIngredient);
 
 
 // Recipes routes

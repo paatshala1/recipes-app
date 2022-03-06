@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Measure } from '../models/measure.model';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,11 @@ export class MeasuresService {
 
   canDeleteMeasure(id:string) {
     return this.http.get<boolean>(`http://localhost:4000/api/recipe/measure/${id}`);
+  }
+
+
+  addMeasure(form:FormGroup) {
+    return this.http.post<Measure[]>(`${this.URL_API}/create`, form.value);
   }
 
 

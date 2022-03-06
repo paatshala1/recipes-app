@@ -7,6 +7,7 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import { MeasuresService } from 'src/app/services/measures.service';
 import { LevelsService } from 'src/app/services/levels.service';
 import { EquipmentsService } from 'src/app/services/equipments.service';
+import { IngredientsDBService } from 'src/app/services/ingredientsDB.service';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -29,7 +30,7 @@ import { take } from 'rxjs/operators';
 
 export class AddEditDeleteComponent implements OnInit {
 
-  constructor(private _equipmentsService:EquipmentsService , private _categoriesService:CategoriesService, private _measuresService:MeasuresService, private _levelsService:LevelsService, private _fb:FormBuilder, private _router:Router, private _snackBar:MatSnackBar) {
+  constructor(private _equipmentsService:EquipmentsService , private _categoriesService:CategoriesService, private _measuresService:MeasuresService, private _levelsService:LevelsService, private _ingredientsDBService:IngredientsDBService, private _fb:FormBuilder, private _router:Router, private _snackBar:MatSnackBar) {
 
   }
 
@@ -46,10 +47,12 @@ export class AddEditDeleteComponent implements OnInit {
     false
   ];
 
+  confElement:string = '';
+
   dbEntries:any[] = [];
   ENTRIES_DATA!:MatTableDataSource<any>;
 
-  pageSizeOptions:number[] = [5, 10, 25, 50, 100]
+  pageSizeOptions:number[] = [10, 25, 50, 100]
   displayedColumns: string[] = ['name', 'actions'];
 
   result!:Observable<boolean>;
@@ -71,7 +74,7 @@ export class AddEditDeleteComponent implements OnInit {
 
 
   removeEntry(id:string, name:string) {
-    let currentUrl = this._router.url;
+    const currentUrl = this._router.url;
 
     switch (currentUrl) {
       case '/categorias':
@@ -81,7 +84,7 @@ export class AddEditDeleteComponent implements OnInit {
           res => {
             // console.log(res);
             if(res == false) {
-              this._snackBar.open('Primero debe eliminar/modificar las rectas de la categoría', '', {
+              this._snackBar.open('Primero debe eliminar/modificar las recetas de la categoría', '', {
                 horizontalPosition:'center',
                 verticalPosition:'bottom',
                 duration:2500
@@ -89,7 +92,6 @@ export class AddEditDeleteComponent implements OnInit {
               return
             }
             else {
-              console.log(this.result);
               this._categoriesService.removeCategory(id).pipe(take(1)).subscribe(
                 res => {
                   this.updateDBSource(res)
@@ -103,10 +105,29 @@ export class AddEditDeleteComponent implements OnInit {
         break
 
       case '/medidas':
-        this._measuresService.removeMeasure(id).subscribe(
-          res => this.updateDBSource(res),
+        this.result = this._measuresService.canDeleteMeasure(id);
+        this.result.pipe(take(1)).subscribe(
+          res => {
+            // console.log(res);
+            if(res == false) {
+              this._snackBar.open('Primero debe eliminar/modificar las recetas que incluyen esta medida', '', {
+                horizontalPosition:'center',
+                verticalPosition:'bottom',
+                duration:2500
+              });
+              return
+            }
+            else {
+              this._measuresService.removeMeasure(id).pipe(take(1)).subscribe(
+                res => {
+                  this.updateDBSource(res)
+                },
+                err => console.log(err)
+              );
+            }
+          },
           err => console.log(err)
-        );
+        )
         break
 
       case '/niveles':
@@ -116,7 +137,7 @@ export class AddEditDeleteComponent implements OnInit {
           res => {
             // console.log(res);
             if(res == false) {
-              this._snackBar.open('Primero debe eliminar/modificar las rectas del nivel', '', {
+              this._snackBar.open('Primero debe eliminar/modificar las recetas del nivel', '', {
                 horizontalPosition:'center',
                 verticalPosition:'bottom',
                 duration:2500
@@ -124,7 +145,6 @@ export class AddEditDeleteComponent implements OnInit {
               return
             }
             else {
-              console.log(res);
               this._levelsService.removeLevel(id).pipe(take(1)).subscribe(
                 res => {
                   this.updateDBSource(res)
@@ -138,53 +158,107 @@ export class AddEditDeleteComponent implements OnInit {
         break
 
       case '/equipos':
-        this._equipmentsService.removeEquipment(id).subscribe(
-          res => this.updateDBSource(res),
+        this.result = this._equipmentsService.canDeleteEquipment(id);
+
+        this.result.pipe(take(1)).subscribe(
+          res => {
+            if(res == false) {
+              this._snackBar.open('Primero debe eliminar/modificar las recetas que incluyen este equipo', '', {
+                horizontalPosition:'center',
+                verticalPosition:'bottom',
+                duration:2500
+              });
+              return
+            }
+            else {
+              this._equipmentsService.removeEquipment(id).pipe(take(1)).subscribe(
+                res => {
+                  this.updateDBSource(res)
+                },
+                err => console.log(err)
+              );
+            }
+          },
           err => console.log(err)
-        );
+        )
         break
 
       case '/ingredientes':
-        console.log('INGREDIENTES');
+        this.result = this._ingredientsDBService.canDeleteIngredient(id);
+
+        this.result.pipe(take(1)).subscribe(
+          res => {
+            if (res == false) {
+              this._snackBar.open('Primero debe eliminar/modificar las recetas que incluyen este ingrediente', '', {
+                horizontalPosition:'center',
+                verticalPosition:'bottom',
+                duration:2500
+              });
+              return
+            }
+            else {
+              this._ingredientsDBService.removeIngredient(id).pipe(take(1)).subscribe(
+                res => {
+                  this.updateDBSource(res)
+                },
+                err => console.log(err)
+              );
+            }
+          },
+          err => console.log(err)
+        )
         break
 
       default:
-        throw new Error('ENTRADA NO VALIDA') ;
+        throw new Error('ENTRADA NO VALIDA');
     }
   }
 
 
   loadEntries() {
-    let currentUrl = this._router.url;
+    const currentUrl = this._router.url;
 
     switch (currentUrl) {
       case '/categorias':
+        this.confElement = 'Cetegoría';
         this._categoriesService.getCategoryList().subscribe(
           res => this.updateDBSource(res),
           err => console.log(err)
         );
         break
+
       case '/medidas':
+        this.confElement = 'Medida';
         this._measuresService.getMeasures().subscribe(
           res => this.updateDBSource(res),
           err => console.log(err)
         );
         break
+
       case '/niveles':
+        this.confElement = 'Nivel';
         this._levelsService.getLevels().subscribe(
           res => this.updateDBSource(res),
           err => console.log(err)
         );
         break
+
       case '/equipos':
+        this.confElement = 'Equipo';
         this._equipmentsService.getEquipments().subscribe(
           res => this.updateDBSource(res),
           err => console.log(err)
         );
         break
+
       case '/ingredientes':
-        console.log('INGREDIENTES');
+        this.confElement = 'Ingrediente',
+        this._ingredientsDBService.getIngredientsDB().subscribe(
+          res => this.updateDBSource(res),
+          err => console.log(err)
+        )
         break
+
       default:
         throw new Error('ENTRADA NO VALIDA') ;
     }
@@ -196,5 +270,6 @@ export class AddEditDeleteComponent implements OnInit {
     // console.log(res);
     this.dbEntries = res;
     this.ENTRIES_DATA = new MatTableDataSource(this.dbEntries);
+    this.ENTRIES_DATA.paginator = this.paginator;
   }
 }

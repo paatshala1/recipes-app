@@ -44,32 +44,91 @@ exports.canDeleteLevel = async function (req, res) {
 
 
 exports.canDeleteMeasure = async function (req, res) {
-  let recipesByMeasure = await Recipe.find({measure: req.params.id});
 
-  if (recipesByMeasure.length > 0) {
-    res.send(false);
-  }
-  else {
-    res.send(true);
-  }
+  let result = true;
+  let recipes = await Recipe.find({})
+    .populate({
+      path: 'elements.measure',
+      model: 'Measure'
+    })
+    .populate({
+      path: 'elements.ingredient',
+      model: 'Ingredient'
+    });
+
+    for (let i = 0; i < recipes.length; i++) {
+      const measures = recipes[i].elements;
+      for (let m = 0; m < measures.length; m++) {
+        const measureId = measures[m].measure._id;
+        // console.log(measure);
+        if (measureId == req.params.id) {
+          result = false;
+          // console.log(`MATCHED, so now the result is ${result}`);
+          break
+        };
+      }
+    }
+
+    res.send(result);
+
 }
 
 
 exports.canDeleteEquipment = async function (req, res) {
-  let recipesByEquipment = await Recipe.find({equipment: req.params.id});
 
-  if (recipesByEquipment.length > 0) {
-    res.send(false);
+  let result = true;
+  const recipes = await Recipe.find({})
+    .populate({
+      path:'equipment',
+      model:'Equipment'
+    });
+
+  for (let i = 0; i < recipes.length; i++) {
+    const equips = recipes[i].equipment;
+    // console.log(`NUMBER ${i}: ${recipe}`);
+    for (let e = 0; e < equips.length; e++) {
+      const equipId = equips[e]._id;
+      // console.log(`RECIPE ${r}, EQUIP ${e}: ${equipId}`);
+      if (equipId == req.params.id) {
+        result = false;
+        break
+      }
+    }
   }
-  else {
-    res.send(true);
+  res.send(result);
+
+}
+
+
+exports.canDeleteIngredient = async function (req, res) {
+
+  let result = true;
+
+  const recipes = await Recipe.find({})
+    .populate({
+      path:'elements.ingredient',
+      model:'Ingredient'
+    });
+    // console.log(recipes);
+
+  for (let i = 0; i < recipes.length; i++) {
+    const elem = recipes[i].elements;
+    for (let n = 0; n < elem.length; n++) {
+      const ingId = elem[n].ingredient._id;
+      // console.log(`${elem[n].ingredient.name}: ${ingId}`);
+      if (ingId == req.params.id) {
+        result = false;
+      }
+    }
   }
+  res.send(result);
+
 }
 
 
 exports.get_recipeDetail = async function (req, res) {
 
-  let recipeDetail = await Recipe.findById(req.params.id)
+  const recipeDetail = await Recipe.findById(req.params.id)
     .populate('category')
     .populate({
       path:'equipment',

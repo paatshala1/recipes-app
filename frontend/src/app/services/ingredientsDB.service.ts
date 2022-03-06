@@ -5,6 +5,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { Observable, ReplaySubject } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +21,19 @@ export class IngredientsDBService {
 
   constructor(private http: HttpClient) { }
 
-  addIngredient(ing:Ingredient[]) {
-    return this.http.post<Ingredient[]>(`${this.URL_API}/create`, ing)
+  addIngredient(form:FormGroup) {
+    return this.http.post<Ingredient[]>(`${this.URL_API}/create`, form.value);
   }
+
+
+  canDeleteIngredient(id:string) {
+    return this.http.get<boolean>(`http://localhost:4000/api/recipe/ingredient/${id}`);
+  }
+
 
   editIngredient(ing:Ingredient[]) {
     console.log(ing);
-    
+
   }
 
   getIngredientsDB() {

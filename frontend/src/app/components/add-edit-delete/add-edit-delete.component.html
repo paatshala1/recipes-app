@@ -1,6 +1,15 @@
-<p>add-edit-delete works!</p>
+<div class="container">
+  <div class="table-button-container">
+    <div>
+      <span class="sectionHeader">{{confElement}}</span>
+      <p><i>(digite {{confElement.toLowerCase()}} a agregar)</i></p>
+    </div>
+    <div class="spacer"></div>
+    <app-add-edit-delete-detail [editMode]="editMode" [confElement]="confElement"></app-add-edit-delete-detail>
+    <div class="spacer"></div>
+  </div>
+</div>
 
-<app-add-edit-delete-detail [editMode]="editMode"></app-add-edit-delete-detail>
 
 <div class="container">
   <mat-form-field class="table-filter-input" appearance="standard">

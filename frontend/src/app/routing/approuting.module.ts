@@ -23,7 +23,7 @@ const appRoutes:Routes = [
   {path: 'recetas/:cat/:id', component:RecipeDetailComponent},
   {path: 'carrito', component:CartComponent},
   {path: 'contacto',  component:ContactComponent},
-  {path: 'ingredientes', component:IngredientsDBComponent},
+  {path: 'ingredientes', component:AddEditDeleteComponent},
   {path: 'categorias', component:AddEditDeleteComponent},
   {path: 'medidas', component:AddEditDeleteComponent},
   {path: 'equipos', component:AddEditDeleteComponent},
