@@ -15,16 +15,16 @@ import { CreateIngredientComponent } from '../create-ingredient/create-ingredien
 })
 
 export class IngredientsDBComponent implements OnInit, AfterViewInit {
-  
-  constructor(public ingsDBService:IngredientsDBService, private _snackbar:MatSnackBar, private router: Router) { 
-    
+
+  constructor(public ingsDBService:IngredientsDBService, private _snackbar:MatSnackBar, private router: Router) {
+
   }
-  
-  
+
+
   // VARIABLES
   pageSizeOptions:number[] = [5, 10, 25, 50, 100]
   displayedColumns: string[] = ['name', 'notes', 'actions'];
-  
+
   editMode:[Ingredient, boolean] = [
     {
     name:'',
@@ -32,7 +32,7 @@ export class IngredientsDBComponent implements OnInit, AfterViewInit {
     },
     false
   ];
-  
+
   dbIngredients:Ingredient[] = [];
   ING_DATA!:MatTableDataSource<any>;
 
@@ -41,14 +41,14 @@ export class IngredientsDBComponent implements OnInit, AfterViewInit {
 
 
   // LIFECYCLE
-  ngOnInit(): void {  
+  ngOnInit(): void {
     this.loadIngredientsDB();
   }
-  
+
 
   ngAfterViewInit(): void {
   }
-  
+
 
   // FUNCTIONS
   applyFilter(event:Event) {
@@ -56,7 +56,7 @@ export class IngredientsDBComponent implements OnInit, AfterViewInit {
     // console.log(currentFilter);
     this.ING_DATA.filter = currentFilter.trim().toLowerCase();
   }
-  
+
 
   editIngredient(id:string, name:string, notes:string) {
     this._snackbar.open('Iniciando edición', '', {
@@ -73,7 +73,7 @@ export class IngredientsDBComponent implements OnInit, AfterViewInit {
     console.log('🚀 ~ IngredientsDBComponent ~ editIngredient ~ editMode', this.editMode);
   }
 
-  
+
   loadIngredientsDB() {
     this.ingsDBService.getIngredientsDB().subscribe(
       res => {
@@ -97,7 +97,7 @@ export class IngredientsDBComponent implements OnInit, AfterViewInit {
         horizontalPosition: 'center'
       });},
       err => console.log(err)
-    );    
+    );
   }
 
 

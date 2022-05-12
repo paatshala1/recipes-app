@@ -51,6 +51,12 @@ exports.delete_level = async function (req, res) {
   await Level.findByIdAndDelete(req.params.id);
   let levelList = await Level.find({}).sort({_id: 'asc'});
   res.send(levelList);
+}
 
 
+exports.update_level = async function (req, res) {
+
+  await Level.findByIdAndUpdate(req.params.id, req.body);
+  const levelList = await Level.find({}).sort({_id: 'asc'});
+  res.send(levelList);
 }

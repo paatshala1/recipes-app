@@ -52,5 +52,12 @@ exports.delete_measure = async function (req, res) {
   await Measure.findByIdAndDelete(req.params.id);
   let measureList = await Measure.find({}).sort({name: 'asc'});
   res.send(measureList);
+}
 
+
+exports.update_measure = async function (req, res) {
+
+  await Measure.findByIdAndUpdate(req.params.id, req.body);
+  const measureList = await Measure.find({}).sort({name: 'asc'});
+  res.send(measureList);
 }

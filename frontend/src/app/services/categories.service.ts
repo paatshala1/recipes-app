@@ -15,17 +15,20 @@ export class CategoriesService {
   canDelete!:boolean;
 
 
-  addCategory(form:FormGroup) {
+  addCategory(form:FormData) {
 
-    let category = form.value;
-    category.route = category.name.toLowerCase();
-    return this.http.post<Category[]>(`${this.URL_API}/create`, form.value);
+    return this.http.post<Category[]>(`${this.URL_API}/create`, form);
 
   }
 
 
   canDeleteCategory(id:string):any {
     return this.http.get<boolean>(`http://localhost:4000/api/recipe/category/${id}`);
+  }
+
+
+  editCategory(form:FormGroup, id?:string) {
+    return this.http.put(`${this.URL_API}/update/${id}`, form.value)
   }
 
 

@@ -31,9 +31,9 @@ export class IngredientsDBService {
   }
 
 
-  editIngredient(ing:Ingredient[]) {
-    console.log(ing);
-
+  editIngredient(form:FormGroup, id?:string) {
+    console.log(form);
+    return this.http.put(`${this.URL_API}/update/${id}`, form.value)
   }
 
   getIngredientsDB() {

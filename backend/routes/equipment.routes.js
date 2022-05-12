@@ -10,5 +10,7 @@ router.post('/create', equipmentController.create_equipment);
 
 router.delete('/delete/:id', equipmentController.delete_equipment);
 
+router.put('/update/:id', equipmentController.update_equipment);
+
 
 module.exports = router;

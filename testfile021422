@@ -1,10 +1,10 @@
 
-habilitar la edición de elementos dentro de las opciones de configs
+Revisar el "movimiento feo" cuando está en pantalla reducida.
 
-poner a funcionar el filtro en configs
+Agregar flecha para regresar desde lista de recetas de categoría
 
-overwrite el style del menu de configuración (paddings)
+Overwrite el style del menu de configuración (paddings)
 
-reemplazar imágenes de recetas existentes, borrando la anterior en cloudinary
+Para puesta en producción: reemplazar imágenes de recetas existentes, borrando la anterior en cloudinary
 
 

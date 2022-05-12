@@ -10,4 +10,6 @@ router.get('/list', measureController.get_measureList);
 
 router.post('/create', measureController.create_measure);
 
+router.put('/update/:id', measureController.update_measure);
+
 module.exports = router;

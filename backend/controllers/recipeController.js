@@ -70,7 +70,6 @@ exports.canDeleteMeasure = async function (req, res) {
     }
 
     res.send(result);
-
 }
 
 
@@ -228,7 +227,7 @@ exports.update_recipe = function (req, res) {
 
 exports.upload_image = async function (req, res) {
 
-  console.log(req.file);
+  // console.log(req.file);
   const uploadResult = await cloudinary.uploader.upload(req.file.path, {width: 300, height: 250, crop: "fill", folder: 'recipe-image'});
 
   await Recipe.findByIdAndUpdate(req.body.id, {urlPhoto:uploadResult.url, public_id:uploadResult.public_id});

@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
+const { uploadForCategory } = require('../libs/multer')
+
 const categoryController = require('../controllers/categoryController');
 
 
-router.post('/create', categoryController.create_category);
+router.post('/create', uploadForCategory.single('catImage'), categoryController.create_category);
 
 router.get('/list', categoryController.get_categoryList);
 

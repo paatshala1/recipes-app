@@ -13,6 +13,10 @@ table {
 }
 
 
+.stickySub {
+  background-color: #131313;
+}
+
 .tableAction {
   margin-left: 2rem;
   cursor: pointer;

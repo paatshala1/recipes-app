@@ -2,7 +2,7 @@
   <div class="table-button-container">
     <button class="create-recipe" mat-raised-button color="accent" routerLink="nueva">CREAR NUEVA RECETA</button>
   </div>
-</div> 
+</div>
 
 <div class="container">
   <mat-grid-list cols="4" rowHeight="4:3" gutterSize="1rem">
@@ -10,8 +10,10 @@
         *ngFor="let category of categories"
         [colspan]= 1
         [rowspan]= 1>
+      <!-- <input type="file" name="file" id="" #categoryImage placeholder="a" alt="category image" hidden> -->
       <img src="{{category.imageURL}}" alt="">
       <mat-grid-tile-footer>{{category.name}}</mat-grid-tile-footer>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
+

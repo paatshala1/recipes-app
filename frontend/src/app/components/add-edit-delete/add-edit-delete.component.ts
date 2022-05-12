@@ -12,11 +12,11 @@ import { IngredientsDBService } from 'src/app/services/ingredientsDB.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
-import { Ingredient } from 'src/app/models/ingredient.model';
-import { Category } from 'src/app/models/category.model';
-import { Measure } from 'src/app/models/measure.model';
-import { Level } from 'src/app/models/level.model';
-import { Equipment } from 'src/app/models/equipment.model';
+// import { Ingredient } from 'src/app/models/ingredient.model';
+// import { Category } from 'src/app/models/category.model';
+// import { Measure } from 'src/app/models/measure.model';
+// import { Level } from 'src/app/models/level.model';
+// import { Equipment } from 'src/app/models/equipment.model';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -64,12 +64,23 @@ export class AddEditDeleteComponent implements OnInit {
 
 
   applyFilter(event:Event) {
-
+    const currentFilter = (event.target as HTMLInputElement).value;
+    this.ENTRIES_DATA.filter = currentFilter.trim().toLowerCase();
   }
 
 
-  editEntry(id:string, name:string, notes:string) {
-
+  editEntry(id:string, name:string) {
+    this._snackBar.open('Iniciando edición', '', {
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+      duration: 1500
+    });
+    this.editMode[0] = {
+      name:name,
+      _id:id
+    }
+    this.editMode[1] = true;
+    console.log('🚀 ~ IngredientsDBComponent ~ editIngredient ~ editMode', this.editMode);
   }
 
 
@@ -220,7 +231,7 @@ export class AddEditDeleteComponent implements OnInit {
 
     switch (currentUrl) {
       case '/categorias':
-        this.confElement = 'Cetegoría';
+        this.confElement = 'Categoría';
         this._categoriesService.getCategoryList().subscribe(
           res => this.updateDBSource(res),
           err => console.log(err)

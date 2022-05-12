@@ -1,11 +1,16 @@
 <div>
-  <form class="newIngredient" [formGroup]=EntryForm (ngSubmit)="addOrEditEntry(EntryForm)">
+  <form enctype="multipart/form-data" method="POST" class="newElement" [formGroup]=EntryForm (ngSubmit)="addOrEditEntry(EntryForm)">
 
     <!-- addOrEditIngredient(IngredientForm, formDirective) -->
-    <mat-form-field>
-      <mat-label>&nbsp;&nbsp; {{confElement}}&nbsp;</mat-label>
-      <input type="text" matInput autocomplete="off" placeholder="{{confElement}}" formControlName="name" value="{{editMode[0].name}}" #ingInput required>
-    </mat-form-field>
+    <div class="newInfo">
+      <mat-form-field>
+        <mat-label>&nbsp;&nbsp; {{confElement}}&nbsp;</mat-label>
+        <input type="text" matInput autocomplete="off" placeholder="{{confElement}}" formControlName="name" value="{{editMode[0].name}}" #ingInput required>
+      </mat-form-field>
+
+      <label *ngIf="confElement == 'Categoría'" for="catImage">Debe agregar imagen de categoría</label>
+      <input *ngIf="confElement == 'Categoría'" type="file" formControlName="catImage" id="catImage" (change)="onFileSelected($event)" aria-label="category image">
+    </div>
 
     <button *ngIf="!this.editMode[1]" class="acceptButton" mat-raised-button color="primary" type="submit" [disabled]="EntryForm.invalid">Agregar</button>
 

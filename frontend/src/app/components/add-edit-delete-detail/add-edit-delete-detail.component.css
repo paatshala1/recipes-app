@@ -7,9 +7,21 @@ mat-form-field, button {
   margin: 1rem;
 }
 
-.newIngredient {
+
+#catImage {
+  height: auto;
+  font-size: initial;
+}
+
+.newElement {
   display: flex;
   align-items: center;
+}
+
+
+.newInfo {
+  display: flex;
+  flex-direction: column;
 }
 
 

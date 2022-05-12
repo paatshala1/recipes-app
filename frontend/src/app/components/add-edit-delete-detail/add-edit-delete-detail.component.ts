@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -33,9 +33,19 @@ export class AddEditDeleteDetailComponent implements OnInit {
     private _router:Router
     ) {
 
-    this.EntryForm = this._fb.group({
-      name: ['', Validators.required]
-    })
+      let currentURL = this._router.url
+      if (currentURL == '/categorias') {
+        this.EntryForm = this._fb.group({
+          name: new FormControl('', Validators.required),
+          catImage: new FormControl('', Validators.required)
+        })
+      }
+      else {
+        this.EntryForm = this._fb.group({
+          name: new FormControl('', Validators.required)
+        })
+      }
+
 
   }
 
@@ -50,15 +60,22 @@ export class AddEditDeleteDetailComponent implements OnInit {
 
   EntryForm!:FormGroup;
   addResponse:any;
+  file!:File;
 
 
-  addByType(form:FormGroup) {
+  // Type changed to any to accept FormGroup or FormData...
+  addByType(form:any) {
     const currentURL = this._router.url;
 
     switch (currentURL) {
 
       case '/categorias':
-        return this.categoriesService.addCategory(form);
+        const fd = new FormData();
+        fd.append('catImage', this.file);
+        fd.append('name', form.value.name);
+        fd.append('route', form.value.name.toLowerCase())
+
+        return this.categoriesService.addCategory(fd);
         break;
 
       case '/ingredientes':
@@ -83,48 +100,23 @@ export class AddEditDeleteDetailComponent implements OnInit {
   }
 
 
-  refreshEntries(form:FormGroup) {
-    this.addEditDeleteComponent.loadEntries();
-      form.reset('');
-      form.setValue(
-        {
-          name:''
-        }
-      );
-      this._snackbar.open('Ingrediente creado exitosamente', '', {
-        verticalPosition: 'top',
-        duration: 1500,
-        horizontalPosition: 'right'
-      })
-  }
-
-
   addOrEditEntry(form:FormGroup) {
     // console.log(form.value);
     // console.log(this.editMode[0]);
     if (this.editMode[1]) {
       // console.log('EDITING');
       this.setEditValues()
-        .then(ingsSet => {
-          this.ingsDBService.updateIngredient(form.value, this.editMode[0]._id).subscribe(
+        .then(entrySet => {
+          this.editByType(form, this.editMode[0]._id).subscribe(
             res => {
-              form.reset();
-              this.editMode[0] = {
-                name:'',
-                _id:'',
-                notes:''
-              };
-              this.editMode[1] = false;
-              this.addEditDeleteComponent.loadEntries();
+              this.refreshEntries(form);
             },
             err => console.log(err)
-          );
-
+          )
         })
         .catch(err => {
           console.log(err);
         })
-
     }
     else {
       // console.log('ADDING');
@@ -136,6 +128,74 @@ export class AddEditDeleteDetailComponent implements OnInit {
       );
       // formDirective.resetForm();
     }
+  }
+
+
+  editByType(form:FormGroup, id:string) {
+    const currentURL = this._router.url;
+
+    switch (currentURL) {
+
+      case '/categorias':
+        return this.categoriesService.editCategory(form, id);
+        break;
+
+      case '/ingredientes':
+        return this.ingsDBService.editIngredient(form, id);
+        break;
+
+      case '/medidas':
+        return this.measuresService.editMeasure(form, id);
+        break;
+
+      case '/niveles':
+        return this.levelsService.editLevel(form, id);
+        break;
+
+      case '/equipos':
+        return this.equipmentsService.editEquipment(form, id);
+        break;
+
+      default:
+        throw new Error('ENTRADA NO VALIDA');
+    }
+  }
+
+
+  onFileSelected(event:any):void {
+    if(event.target.files && event.target.files[0]) {
+      this.file = <File>event.target.files[0];
+    }
+  }
+
+
+  refreshEntries(form:FormGroup) {
+    this.addEditDeleteComponent.loadEntries();
+      form.reset('');
+      (this._router.url == '/categorias')
+        ? form.setValue(
+          {
+            name: '',
+            catImage: ''
+          }
+        )
+        : form.setValue(
+          {
+            name:''
+          }
+        );
+
+      this.editMode[0] = {
+        name:'',
+        _id:'',
+        notes:''
+      };
+      this.editMode[1] = false;
+      this._snackbar.open('Acción procesada exitosamente', '', {
+        verticalPosition: 'top',
+        duration: 1500,
+        horizontalPosition: 'right'
+      })
   }
 
 

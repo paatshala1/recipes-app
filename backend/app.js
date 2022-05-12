@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 // const multer = require('multer');
 // const upload = multer({dest: 'public/uploads/'});
-const upload = require('./libs/multer');
+// const { uploadForRecipe } = require('./libs/multer');
 
 
 
@@ -33,13 +33,13 @@ app.use(cors({origin: 'http://localhost:4200'}));
 app.use(morgan('dev'));
 app.use(express.json());
 
-// RECIBIR INFO DE FORMULARIOS DE DISTINTOS TIPOS 
+// RECIBIR INFO DE FORMULARIOS DE DISTINTOS TIPOS
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(upload.single('recipeImage'));
+// app.use(uploadForRecipe.single('recipeImage'));
 
 // Routers
 app.use('/', indexRouter);

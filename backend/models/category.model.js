@@ -1,9 +1,9 @@
 const { model, Schema } = require('mongoose');
 
 const categorySchema = new Schema({
-  
+
   name:{type: String, required: true},
-  imageURL:{type: String, required: false},
+  imageURL:{type: String, required: true},
   route:{type: String, required: true}
 },
 {

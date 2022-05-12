@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const { uploadForRecipe } = require('../libs/multer')
+
 
 
 const recipeController = require('../controllers/recipeController');
@@ -21,7 +23,7 @@ router.get('/ingredient/:id', recipeController.canDeleteIngredient);
 // Recipes routes
 router.get('/detail/:id', recipeController.get_recipeDetail);
 
-router.post('/detail/:id/upload', recipeController.upload_image);
+router.post('/detail/:id/upload', uploadForRecipe.single('recipeImage'), recipeController.upload_image);
 
 router.get('/list/:cat', recipeController.get_recipeList);
 

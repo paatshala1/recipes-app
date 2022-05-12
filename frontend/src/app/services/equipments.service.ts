@@ -22,7 +22,12 @@ export class EquipmentsService {
     return this.http.get<boolean>(`http://localhost:4000/api/recipe/equipment/${id}`);
   }
 
-  
+
+  editEquipment(form:FormGroup, id?:string) {
+    return this.http.put(`${this.URL_API}/update/${id}`, form.value)
+  }
+
+
   getEquipments() {
     return this.http.get<Equipment[]>(`${this.URL_API}/list`)
   }

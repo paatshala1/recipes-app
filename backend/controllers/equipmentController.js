@@ -54,5 +54,12 @@ exports.delete_equipment = async function (req, res) {
   await Equipment.findByIdAndDelete(req.params.id);
   let equipList = await Equipment.find({}).sort({name: 'asc'});
   res.send(equipList);
+}
 
+
+exports.update_equipment = async function (req, res) {
+
+  await Equipment.findByIdAndUpdate(req.params.id, req.body);
+  const equipList = await Equipment.find({}).sort({name: 'asc'});
+  res.send(equipList);
 }

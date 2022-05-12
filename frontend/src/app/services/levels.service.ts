@@ -23,6 +23,11 @@ export class LevelsService {
   }
 
 
+  editLevel(form:FormGroup, id?:string) {
+    return this.http.put(`${this.URL_API}/update/${id}`, form.value)
+  }
+
+
   getLevels() {
     return this.http.get<Level[]>(`${this.URL_API}/list`);
   }

@@ -10,5 +10,7 @@ router.get('/list', levelController.get_levelList);
 
 router.post('/create', levelController.create_level);
 
+router.put('/update/:id', levelController.update_level);
+
 
 module.exports = router;

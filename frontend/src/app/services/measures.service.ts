@@ -13,13 +13,19 @@ export class MeasuresService {
   URL_API = 'http://localhost:4000/api/measure';
 
 
-  canDeleteMeasure(id:string) {
-    return this.http.get<boolean>(`http://localhost:4000/api/recipe/measure/${id}`);
-  }
 
 
   addMeasure(form:FormGroup) {
     return this.http.post<Measure[]>(`${this.URL_API}/create`, form.value);
+  }
+
+
+  editMeasure(form:FormGroup, id?:string) {
+    return this.http.put(`${this.URL_API}/update/${id}`, form.value);
+  }
+
+  canDeleteMeasure(id:string) {
+    return this.http.get<boolean>(`http://localhost:4000/api/recipe/measure/${id}`);
   }
 
 
