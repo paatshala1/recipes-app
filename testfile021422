@@ -1,10 +1,4 @@
 
-Revisar el "movimiento feo" cuando está en pantalla reducida.
-
-Agregar flecha para regresar desde lista de recetas de categoría
-
-Overwrite el style del menu de configuración (paddings)
-
 Para puesta en producción: reemplazar imágenes de recetas existentes, borrando la anterior en cloudinary
 
 

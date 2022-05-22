@@ -1,4 +1,14 @@
 
+.config-menu {
+  padding: 0;
+  background: #32408e;
+}
+
+
+.mat-menu-item:hover {
+  opacity: .4;
+}
+
 
 .link {
   cursor: pointer;
@@ -29,17 +39,12 @@
 }
 
 .navBar {
-  height: 80px;  
+  height: 80px;
 }
 
 
 .spacer{
   flex: 1 1 auto;
-}
-
-.custom {
-  background-color: #4757b6;
-  padding-top: 0;
 }
 
 

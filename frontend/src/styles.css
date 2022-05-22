@@ -6,13 +6,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   box-sizing: border-box;
 }
 
-
 .acceptButton {
   width: 8rem;
   height: 3rem;
 }
-
-
 
 .transitionButton {
   width: 6rem;
@@ -24,7 +21,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin: 1rem auto;
 }
 
-
 .mat-icon-edit {
   color: #888888;
 }
@@ -33,7 +29,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: #e00606;
 }
 
-
 .pointer {
   cursor: pointer;
 }
@@ -41,7 +36,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .tooltip-red {
   background: #b71c1c;
 }
-
 
 .mat-row .mat-cell {
   border-bottom: 1px solid transparent;
@@ -62,13 +56,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-size: 40px;
 }
 
-
 .sticky {
   position: sticky;
   top: 0px;
   z-index: 100;
 }
-
 
 .stickySub {
   position: sticky;
@@ -76,9 +68,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   z-index: 100;
 }
 
-
 .table-button-container {
-  border: thin solid  #3f51b5;
   display: flex;
   justify-content: space-between;
   align-items: center ;

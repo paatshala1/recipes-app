@@ -1,78 +1,96 @@
-  <div class="sticky container flex">
-    <a *ngIf="recipeDetail"  routerLink="/recetas/{{recipeCategory}}" mat-fab color="accent" aria-label="Example icon button with a menu icon">
+<div class="container">
+  <div class="recipe-header flex">
+    <a
+      *ngIf="recipeDetail"
+      routerLink="/recetas/{{ recipeCategory }}"
+      mat-fab
+      color="accent"
+      aria-label="Back to category"
+    >
       <mat-icon>arrow_back</mat-icon>
     </a>
-    <h2 class=recipeTitle>{{title}}</h2>
-  </div>
-  
-
-<div class="container" *ngIf="recipeDetail">
-  <div class="container">
-    <p class="recipeDescription">{{recipeDetail.description}}</p>
+    <h2 class="recipeTitle">{{ title }}</h2>
   </div>
 
-  <article class="recipeGrid">
-    
-    <section class="recipeSubtitleIng">
-      <h3>INGREDIENTES</h3>
-    </section>
-    
-    <section class=recipeImage>
-      <app-image-upload [recipeID]="recipeID" [recipeUrlPhoto]="recipeDetail.urlPhoto"></app-image-upload>
-      <!-- <img src="{{recipeDetail.urlPhoto}}" alt="{{recipeDetail.name}}"> -->
-    </section>
-    
-    <section class="recipeIngredients">
-      <ul>
-        <li class="ingredientItem listElement" *ngFor="let ing of recipeDetail.elements">
-          <span class="ingQuatity">{{ing.quantity}}</span>
-          <span class="ingMeasure">{{ing.measure.name}}</span>
-          <span class="ingName">{{ing.ingredient.name}}</span>
-        </li>
-      </ul>
-    </section>
+  <div *ngIf="recipeDetail">
+    <div class="container">
+      <p class="recipeDescription">{{ recipeDetail.description }}</p>
+    </div>
 
-    <section class="recipeSubtitle3">
-      <h3>INSTRUCCIONES</h3>
-    </section>
-    <section class="recipeInstructions">
-      <ul>
-        <li class="listElement" *ngFor="let instruction of recipeDetail.instructions">
-          <span>{{instruction}}</span>
-        </li>
-      </ul>
-    </section>
+    <article class="recipeGrid">
+      <section class="recipeSubtitleIng">
+        <h3>INGREDIENTES</h3>
+      </section>
 
-    <section class="recipeSubtitle3">
-      <h3>TIPS</h3>
-    </section>
-    <section class="recipeTips">
-      <ul>
-        <li class="listElement" *ngFor="let tip of recipeDetail.tips">
-          <span>{{tip}}</span>
-        </li>
-      </ul>
-    </section>
+      <section class="recipeImage">
+        <app-image-upload
+          [recipeID]="recipeID"
+          [recipeUrlPhoto]="recipeDetail.urlPhoto"
+        ></app-image-upload>
+        <!-- <img src="{{recipeDetail.urlPhoto}}" alt="{{recipeDetail.name}}"> -->
+      </section>
 
-    <section class="recipeSubtitle1">
-      <h3>NIVEL</h3>
-    </section>
-    <section class="recipeSubtitle2">
-      <h3>EQUIPO</h3>
-    </section>
+      <section class="recipeIngredients">
+        <ul>
+          <li
+            class="ingredientItem listElement"
+            *ngFor="let ing of recipeDetail.elements"
+          >
+            <span class="ingQuatity">{{ ing.quantity }}</span>
+            <span class="ingMeasure">{{ ing.measure.name }}</span>
+            <span class="ingName">{{ ing.ingredient.name }}</span>
+          </li>
+        </ul>
+      </section>
 
-    <section class="recipeLevel">
-      <span>{{recipeDetail.level.name}}</span>
-    </section>
-    
-    <section class="recipeEquipment">
-      <div class="equipmentList">
-        <span class="equipmentItem" *ngFor="let equip of recipeDetail.equipment">{{equip.name}}</span>
-      </div>
-    </section>
-  </article>
+      <section class="recipeSubtitle3">
+        <h3>INSTRUCCIONES</h3>
+      </section>
+      <section class="recipeInstructions">
+        <ul>
+          <li
+            class="listElement"
+            *ngFor="let instruction of recipeDetail.instructions"
+          >
+            <span>{{ instruction }}</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="recipeSubtitle3">
+        <h3>TIPS</h3>
+      </section>
+      <section class="recipeTips">
+        <ul>
+          <li class="listElement" *ngFor="let tip of recipeDetail.tips">
+            <span>{{ tip }}</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="recipeSubtitle1">
+        <h3>NIVEL</h3>
+      </section>
+      <section class="recipeSubtitle2">
+        <h3>EQUIPO</h3>
+      </section>
+
+      <section class="recipeLevel">
+        <span>{{ recipeDetail.level.name }}</span>
+      </section>
+
+      <section class="recipeEquipment">
+        <div class="equipmentList">
+          <span
+            class="equipmentItem"
+            *ngFor="let equip of recipeDetail.equipment"
+            >{{ equip.name }}</span
+          >
+        </div>
+      </section>
+    </article>
+  </div>
+  <br />
+  <br />
+  <br />
 </div>
-<br>
-<br>
-<br>
-
