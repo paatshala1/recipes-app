@@ -1,6 +1,7 @@
-/backend/node_modules
-/frontend/node_modules
-/backend/.env
-/backend/mogoPass.txt
+node_modules
+/client
+.env
 testfile021422
 node_modules
+mongoPass.txt
+.gitignore
