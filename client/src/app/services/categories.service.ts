@@ -23,7 +23,7 @@ export class CategoriesService {
 
 
   canDeleteCategory(id:string):any {
-    return this.http.get<boolean>(`https://angelacocina.herokuapp.com/api/recipe/category/${id}`);
+    return this.http.get<boolean>(`http://localhost:4000/api/recipe/category/${id}`);
   }
 
 
