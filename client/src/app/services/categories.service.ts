@@ -11,7 +11,7 @@ export class CategoriesService {
 
   constructor(private http:HttpClient) { }
 
-  URL_API = 'https://angelacocina.herokuapp.com/api/category';
+  URL_API = '/api/category';
   canDelete!:boolean;
 
 
