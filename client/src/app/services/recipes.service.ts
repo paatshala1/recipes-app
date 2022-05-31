@@ -10,7 +10,7 @@ export class RecipesService {
 
   constructor(private http:HttpClient) { }
 
-  URL_API = 'http://localhost:4000/api/recipe';
+  URL_API = 'https://angelacocina.herokuapp.com/api/recipe';
 
 
   createRecipe(newRecipeData:any) {

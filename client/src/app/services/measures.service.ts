@@ -10,7 +10,7 @@ export class MeasuresService {
 
   constructor(private http:HttpClient) { }
 
-  URL_API = 'http://localhost:4000/api/measure';
+  URL_API = 'https://angelacocina.herokuapp.com/api/measure';
 
 
 
@@ -25,7 +25,7 @@ export class MeasuresService {
   }
 
   canDeleteMeasure(id:string) {
-    return this.http.get<boolean>(`http://localhost:4000/api/recipe/measure/${id}`);
+    return this.http.get<boolean>(`https://angelacocina.herokuapp.com/api/recipe/measure/${id}`);
   }
 
 

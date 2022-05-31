@@ -43,13 +43,14 @@ app.use(express.static(path.join(__dirname, 'angela-kitchen-app')));
 // app.use(uploadForRecipe.single('recipeImage'));
 
 // Routers
-app.use('/users', usersRouter);
+// IMPORTANT: take care of the order, it solves first the first match.
 app.use('/api/ingredient', ingredientRouter);
 app.use('/api/level', levelRouter);
 app.use('/api/recipe', recipeRouter);
 app.use('/api/measure', measureRouter);
 app.use('/api/equipment', equipmentRouter);
 app.use('/api/category', categoryRouter);
+app.use('/users', usersRouter);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler

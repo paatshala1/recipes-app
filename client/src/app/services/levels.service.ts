@@ -10,7 +10,7 @@ export class LevelsService {
 
   constructor(private http:HttpClient) { }
 
-  URL_API = 'http://localhost:4000/api/level';
+  URL_API = 'https://angelacocina.herokuapp.com/api/level';
 
 
   addLevel(form:FormGroup) {
@@ -19,7 +19,7 @@ export class LevelsService {
 
 
   canDeleteLevel(id:string) {
-    return this.http.get<boolean>(`http://localhost:4000/api/recipe/level/${id}`);
+    return this.http.get<boolean>(`https://angelacocina.herokuapp.com/api/recipe/level/${id}`);
   }
 
 

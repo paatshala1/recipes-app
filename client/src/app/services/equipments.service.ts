@@ -10,7 +10,7 @@ export class EquipmentsService {
 
   constructor(private http:HttpClient) { }
 
-  URL_API = 'http://localhost:4000/api/equipment';
+  URL_API = 'https://angelacocina.herokuapp.com/api/equipment';
 
 
   addEquipment(form:FormGroup) {
@@ -19,7 +19,7 @@ export class EquipmentsService {
 
 
   canDeleteEquipment(id:string) {
-    return this.http.get<boolean>(`http://localhost:4000/api/recipe/equipment/${id}`);
+    return this.http.get<boolean>(`https://angelacocina.herokuapp.com/api/recipe/equipment/${id}`);
   }
 
 

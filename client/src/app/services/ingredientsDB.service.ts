@@ -14,7 +14,7 @@ import { FormGroup } from '@angular/forms';
 
 export class IngredientsDBService {
 
-  URL_API = 'http://localhost:4000/api/ingredient';
+  URL_API = 'https://angelacocina.herokuapp.com/api/ingredient';
 
   ING_DATA!:MatTableDataSource<any>;
   dbIngredients:Ingredient[] = [];
@@ -27,7 +27,7 @@ export class IngredientsDBService {
 
 
   canDeleteIngredient(id:string) {
-    return this.http.get<boolean>(`http://localhost:4000/api/recipe/ingredient/${id}`);
+    return this.http.get<boolean>(`https://angelacocina.herokuapp.com/api/recipe/ingredient/${id}`);
   }
 
 
